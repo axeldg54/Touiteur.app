@@ -1,0 +1,76 @@
+create table Touite (
+idTouite int(10) not null,
+texte varchar(235),
+primary key (idTouite)
+);
+
+create table Tag (
+idTag int(10) not null,
+libelle varchar(50),
+description varchar(235),
+primary key(idTag)
+);
+
+create table Image (
+idImage int(10) not null,
+chemin varchar(50),
+description varchar(235),
+primary key(idImage)
+);
+
+create table Utilisateur (
+idUser int(10) not null,
+nom varchar(50),
+prenom varchar(50),
+email varchar(50),
+primary key(idUser)
+);
+
+create table Publier (
+idTouite int(10) not null,
+idUser int(10) not null,
+date date,
+primary key(idTouite, idUser)
+);
+
+create table Contient (
+idTouite int(10) not null,
+idTag int(10) not null,
+idImage int(10) not null,
+primary key(idTouite, idTag, idImage)
+);
+
+create table Suivre (
+idUser int(10) not null,
+idSuivi int(10) not null,
+primary key(idUser, idSuivi)
+);
+
+create table Abonnement (
+idUser int(10) not null,
+idTag int(10) not null,
+primary key(idUser, idTag)
+);
+
+create table Noter (
+idUser int(10) not null,
+idTouite int(10) not null,
+note int(2),
+primary key(idUser, idTouite)
+);
+
+alter table publier add foreign key (idTouite) references Touite(idTouite);
+alter table publier add foreign key (idUser) references Utilisateur(idUser);
+
+alter table contient add foreign key (idTouite) references Touite(idTouite);
+alter table contient add foreign key (idTag) references Tag(idTag);
+alter table contient add foreign key (idImage) references Image(idImage);
+
+alter table suivre add foreign key (idUser) references Utilisateur(idUser);
+alter table suivre add foreign key (idSuivi) references Utilisateur(idUser);
+
+alter table abonnement add foreign key (idUser) references Utilisateur(idUser);
+alter table abonnement add foreign key (idTag) references Tag(idTag);
+
+alter table noter add foreign key (idTouite) references Touite(idTouite);
+alter table noter add foreign key (idUser) references Utilisateur(idUser);
