@@ -1,7 +1,6 @@
 <?php
 declare(strict_types = 1);
 namespace iutnc\deefy\render;
-use \DateTime;
 use iutnc\deefy\touite\Touite;
 
 class RendererTouite {
@@ -12,14 +11,15 @@ class RendererTouite {
         $this->touite = $t;
     }
 
-    private function compact(): string {
-        return "<h1>{$this->touite->getTitre()}</h1>";
+    public function compact(): string {
+        return "<h1>{$this->touite->getTitre()}</h1>
+                <h2>{$this->touite->getAuteur()}</h2>";
     }
 
-    private function long(): string {
+    public function long(): string {
         return "<h1>{$this->touite->getTitre()}</h1>
-                <h2>{$this->touite->getDate()}</h2>
                 <h2>{$this->touite->getAuteur()}</h2>
+                <p>{$this->touite->getDate()->format("F j, Y, g:i a")}</p>
                 <p>{$this->touite->getTexte()}</p>
                 <p>{$this->touite->getScore()}</p>";
     }
