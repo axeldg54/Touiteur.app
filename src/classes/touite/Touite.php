@@ -75,4 +75,9 @@ class Touite{
         return $this->titre;
     }
 
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
 }
