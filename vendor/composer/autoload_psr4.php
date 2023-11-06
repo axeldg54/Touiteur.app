@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Axel\\TouiteurApp\\' => array($baseDir . '/src'),
+    'iutnc\\deefy\\' => array($baseDir . '/src/classes'),
 );

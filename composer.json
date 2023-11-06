@@ -1,9 +1,7 @@
 {
-    "name": "Touiteur",
     "autoload": {
         "psr-4": {
-            "iutnc\\deefy\\": "src/classes"
+            "iutnc\\deefy\\": "src/classes/"
         }
-    },
-    "require": {}
+    }
 }
