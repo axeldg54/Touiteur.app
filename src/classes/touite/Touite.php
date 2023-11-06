@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace iutnc\deefy\touite;
 
 use \DateTime;
+use iutnc\deefy\Image\Image;
 
 
 /*Classe représentant un Touite*/
@@ -15,6 +16,8 @@ class Touite{
     private string $auteur;
     private DateTime $date;
     private string $titre;
+
+    private Image $image;
 
 
     /**
@@ -29,5 +32,47 @@ class Touite{
         $this->score = 0;
         $this->auteur = $auteur;
         $this->date = new DateTime();
+        $this->titre = $titre;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getDate(): DateTime
+    {
+        return $this->date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuteur(): string
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage(): Image
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTexte(): string
+    {
+        return $this->texte;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitre(): string
+    {
+        return $this->titre;
+    }
+
 }
