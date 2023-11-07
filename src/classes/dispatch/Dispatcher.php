@@ -23,7 +23,7 @@ class Dispatcher {
             case "register" :
                 $htmlContent = (new AddUserAction)->execute();
                 break;
-            case "add-playlist" :
+            case "add-touite" :
                 $htmlContent = (new AddTouiteAction())->execute();
                 break;
             default :

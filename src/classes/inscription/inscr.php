@@ -8,7 +8,7 @@ class inscr
 {
     public static function authenticate(string $email, string $passxd2check): bool{
         $pdo = ConnectionFactory::makeConnection();
-        $query = "select passwd from User where email = ?";
+        $query = "select passwd from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
         $row = $st->fetch();//une seule ligne
@@ -16,14 +16,14 @@ class inscr
         return password_verify($passxd2check,$hash);
     }
 
-    public static function register(string $email, string $pass): bool {
+    public static function register(string $nom, string $prenom, string $email, string $pass, int $idimage): bool {
         $pdo = ConnectionFactory::makeConnection();
 
         $hash = password_hash($pass, PASSWORD_DEFAULT, ['cost'=> 12]);
 
         inscr::checkPasswordStrength($pass, 10);
 
-        $query = "select count(*) as compteur from User where email = ?";
+        $query = "select count(*) as compteur from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
         $row = $st->fetch();
@@ -31,7 +31,7 @@ class inscr
         else $mdp = true;
 
         if($mdp) {
-            $query = "insert into user(email,passwd,role) values('$email','$hash',1)";
+            $query = "insert into utilisateur(nom, prenom, email, password, idimage) values('$nom','$prenom','$email','$hash','$idimage')";
             $pdo->exec($query);
         }
 

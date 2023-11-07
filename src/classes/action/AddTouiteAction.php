@@ -9,7 +9,7 @@ class AddTouiteAction extends Action {
         $htmlContent = '';
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $htmlContent = '
-            <form id="form" method="POST" action="index.php?action=add-playlist">
+            <form id="form" method="POST" action="index.php?action=add-touite">
                 <label for="form"> titre : </label>
                 <input type="text" id="titre" name="titre" value="Rap musique" required>
                 <input type="submit" value="Ajouter">
