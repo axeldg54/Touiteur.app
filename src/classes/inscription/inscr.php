@@ -8,12 +8,12 @@ class inscr
 {
     public static function authenticate(string $email, string $passwd2check): bool{
         $pdo = ConnectionFactory::makeConnection();
-        $query = "select prenom, nom, password from Utilisateur where email = ?";
+        $query = "select idUser, prenom, nom, password from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
         $row = $st->fetch();
         $hash = $row['password'];
-        $_SESSION['user'] = ['prenom'=>$row['prenom'], 'nom'=>$row['nom']];
+        $_SESSION['user'] = ['id'=>$row['idUser'], 'prenom'=>$row['prenom'], 'nom'=>$row['nom']];
         return (password_verify($passwd2check, $hash));
     }
 
