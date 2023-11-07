@@ -20,7 +20,7 @@ class SignInAction extends Action {
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];
             if (inscr::authenticate($email, $password)) $htmlContent = 'OK, mot de passe correct et email correct';
-            else $htmlContent = 'FAUX, mot de passe incorrect';
+            else $htmlContent = 'FAUX, mot de passe ou email incorrect';
         }
         return $htmlContent;
     }
