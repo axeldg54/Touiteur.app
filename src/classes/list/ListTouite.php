@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace iutnc\deefy\list;
 
 use \iutnc\deefy\Touite\Touite;
+use \iutnc\deefy\exception\InvalidPropertyNameException;
 use \iutnc\deefy\tri\Tri;
+
 
 /*Classe contient une */
 class ListTouite{
@@ -38,6 +40,16 @@ class ListTouite{
 
 
     public function trierTouites() : void{
-        Tri::tri($this->tabTouites);
+        $this->tabTouites = Tri::tri($this->tabTouites);
+    }
+
+   
+    public function __get(string $attr) : mixed{
+        if(!property_exists($this, $attr)){
+            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
+        }
+        else{
+            return $this->$attr;
+        }
     }
 }
