@@ -5,6 +5,7 @@ namespace iutnc\deefy\touite;
 
 use \DateTime;
 use iutnc\deefy\Image\Image;
+use \iutnc\deefy\exception\InvalidPropertyNameException;
 
 
 /*Classe représentant un Touite*/
@@ -35,49 +36,15 @@ class Touite{
         $this->titre = $titre;
     }
 
-    /**
-     * @return DateTime
-     */
-    public function getDate(): DateTime
-    {
-        return $this->date;
-    }
+    
 
-    /**
-     * @return string
-     */
-    public function getAuteur(): string
-    {
-        return $this->auteur;
-    }
-
-    /**
-     * @return Image
-     */
-    public function getImage(): Image
-    {
-        return $this->image;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTexte(): string
-    {
-        return $this->texte;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitre(): string
-    {
-        return $this->titre;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
+    public function __get(string $attr) : mixed{
+        if(!property_exists($this, $attr)){
+            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
+        }
+        else{
+            return $this->$attr;
+        }
     }
 
 }
