@@ -42,10 +42,7 @@ class Dispatcher {
             <a href='?action='>accueil</a><br>
             <a href='?action=sign-in'>Connexion</a><br>
             <a href='?action=register'>Inscription</a><br>
-            <a href='?action=display-playlist&id=3'>playlist 3</a><br>
-            <a href='?action=display-playlist&id=4'>playlist 4</a><br>
-            <a href='?action=add-playlist'>Ajouter Playlist</a><br>
-            <a href='?action=add-track'>Ajouter Piste</a><br>
+            <a href='?action=add-touite'>Ajouter Touite</a><br>
             $html
           </body>
         </html>";

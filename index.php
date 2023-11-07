@@ -6,6 +6,7 @@ session_start();
 require_once 'vendor/autoload.php';
 
 use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\dispatch\Dispatcher;
 use \iutnc\deefy\list\ListTouite;
 use iutnc\deefy\touite\Touite;
 use iutnc\deefy\render\RendererTouite;
@@ -35,3 +36,4 @@ echo $touiteRender->render(2);
 echo $touiteRender->render(1);
  */
 
+(new Dispatcher())->run();
