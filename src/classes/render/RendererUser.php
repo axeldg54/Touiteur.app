@@ -11,16 +11,16 @@ class RendererUser{
         $this->user = $u;
     }
 
-    public function long(){
+    public function long() : string{
         return "<h1> {$this->user->__get("pseudo")} <\h1> 
                 <h2>{$this->user->__get("nom")}</h2>
                 <h2>{$this->user->__get("prenom")}</h2>";
     }
 
-    public function render(int $selector = 2){
-        if ($selector = 2){
+    public function render(int $selector): string
+    {
             return $this->long();
-        }
+
     }
 
 }
