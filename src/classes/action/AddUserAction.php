@@ -16,9 +16,9 @@ class AddUserAction extends Action {
                 <label for="form"> Prenom :</label>
                 <input type="text" id="prenom" name="prenom" required>
                 <label for="form"> Email : </label>
-                <input type="email" id="email" name="email"  required>
+                <input type="email" id="email" name="email" value="axeldung2004@gmail.com" required>
                 <label for="password"> Mot de passe : </label>
-                <input type="text" id="password" name="password" required>
+                <input type="text" id="password" name="password" value="Axeldung2004&**" required>
                 <input type="submit" value="Inscription">
                 </form>
                 ';
@@ -30,7 +30,7 @@ class AddUserAction extends Action {
 
             try {
                 if (inscr::register($nom,$prenom,$email, $password, 0)) $htmlContent = "Vous avez créé votre compte en tant que " . $email;
-                else $htmlContent = "Problème mot de passe pas assez sécurisé";
+                else $htmlContent = "Problème mot de passe pas assez sécurisé OU email déjà utilisée";
             } catch (AuthException $e) {
                 echo $e;
             }
