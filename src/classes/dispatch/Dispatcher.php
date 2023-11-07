@@ -12,7 +12,7 @@ class Dispatcher {
     private string $action;
     public function __construct() {
         if (isset($_GET['action'])) $this->action = $_GET['action'];
-        else $this->action = '';
+        else $this->action = 'add-touite';
     }
 
     public function run() {
@@ -27,7 +27,7 @@ class Dispatcher {
                 $htmlContent = (new AddTouiteAction())->execute();
                 break;
             default :
-                $htmlContent = include 'modele/accueil.php';
+                $htmlContent = (new AddTouiteAction())->execute();
         };
         $this->renderPage($htmlContent);
     }
