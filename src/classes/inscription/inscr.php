@@ -20,7 +20,8 @@ class inscr
         $mdp = true;
         $pdo = ConnectionFactory::makeConnection();
         $hash = password_hash($pass, PASSWORD_DEFAULT, ['cost'=> 12]);
-        //$mdp = inscr::checkPasswordStrength($pass, 10);
+        $mdp = (!inscr::checkPasswordStrength($pass, 10));
+        if (!$mdp) echo "mot de passe incorrect";
 
         // incrémentation
         $query = "select max(idUser) as max from Utilisateur";
@@ -34,6 +35,7 @@ class inscr
         $st -> execute([$email]);
         $row = $st->fetch();
         if($row['compteur'] > 0) $mdp = false;
+        if (!$mdp) echo "email déjà utilisée";
 
         if($mdp) {
             $query = "insert into utilisateur(idUser ,nom, prenom, email, password, idimage) values('$id', '$nom','$prenom','$email','$hash','$idimage')";
@@ -43,7 +45,7 @@ class inscr
         return $mdp;
     }
 
-    public static function checkPasswordStrength(string $pass, int $minimumLength): bool {
+    private static function checkPasswordStrength(string $pass, int $minimumLength): bool {
         $length = (strlen($pass) < $minimumLength); // longueur minimale
         $digit = preg_match("#[\d]#", $pass); // au moins un digit
         $special = preg_match("#[\W]#", $pass); // au moins un car. spécial
