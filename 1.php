@@ -139,15 +139,23 @@
 
     <!-- widgets debut -->
     <div class="widgets">
-      <div class="widgets__input">
-        <span class="material-icons widgets__searchIcon"> search </span>
-        <input type="text" placeholder="Rechercher Touite" />
-      </div>
+        <div class="widgets__loginButtons">
+            <button class="loginButton">Connexion</button>
+            <button class="loginButton">Inscription</button>
+        </div>
 
-      <div class="widgets__widgetContainer">
-        <h2>Que se passe-t-il ?</h2>
-      </div>
+        <div class="widgets__input">
+            <span class="material-icons widgets__searchIcon">search</span>
+            <input type="text" placeholder="Rechercher Touite" />
+        </div>
+
+        <div class="widgets__widgetContainer">
+            <h2>Que se passe-t-il ?</h2>
+        </div>
     </div>
     <!-- widgets fin -->
+
+
+
   </body>
 </html>
