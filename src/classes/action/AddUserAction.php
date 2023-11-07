@@ -21,8 +21,7 @@ class AddUserAction extends Action {
                 <input type="text" id="password" name="password" required>
                 <input type="submit" value="Inscription">
                 </form>
-                
-                >';
+                ';
         } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
             $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
@@ -31,6 +30,7 @@ class AddUserAction extends Action {
 
             try {
                 if (inscr::register($nom,$prenom,$email, $password, 0)) $htmlContent = "Vous avez créé votre compte en tant que " . $email;
+                else $htmlContent = "Problème mot de passe pas assez sécurisé";
             } catch (AuthException $e) {
                 echo $e;
             }

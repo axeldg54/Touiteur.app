@@ -17,21 +17,26 @@ class inscr
     }
 
     public static function register(string $nom, string $prenom, string $email, string $pass, int $idimage): bool {
+        $mdp = true;
         $pdo = ConnectionFactory::makeConnection();
-
         $hash = password_hash($pass, PASSWORD_DEFAULT, ['cost'=> 12]);
+        //$mdp = inscr::checkPasswordStrength($pass, 10);
 
-        inscr::checkPasswordStrength($pass, 10);
+        // incrémentation
+        $query = "select max(idUser) as max from Utilisateur";
+        $st = $pdo-> prepare($query);
+        $st -> execute();
+        $row = $st->fetch();
+        $id = $row['max'] + 1;
 
         $query = "select count(*) as compteur from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
         $row = $st->fetch();
         if($row['compteur'] > 0) $mdp = false;
-        else $mdp = true;
 
         if($mdp) {
-            $query = "insert into utilisateur(nom, prenom, email, password, idimage) values('$nom','$prenom','$email','$hash','$idimage')";
+            $query = "insert into utilisateur(idUser ,nom, prenom, email, password, idimage) values('$id', '$nom','$prenom','$email','$hash','$idimage')";
             $pdo->exec($query);
         }
 
