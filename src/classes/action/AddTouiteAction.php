@@ -23,10 +23,11 @@ class AddTouiteAction extends Action {
                 $size = $_FILES['file']['size'];
                 $error = $_FILES['file']['error'];
             }
+            move_uploaded_file($tmpName, './img/'.$name);
+            echo $name;
             $contenu = $_POST['contenu'];
             ;
-            $htmlContent = '<img src="$tmpName" />
-';
+            $htmlContent = '<img src='.'/img/'.$name.'</img>';
         }
         return $htmlContent;
     }
