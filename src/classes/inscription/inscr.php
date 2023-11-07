@@ -6,14 +6,15 @@ use iutnc\deefy\db\ConnectionFactory;
 
 class inscr
 {
-    public static function authenticate(string $email, string $passxd2check): bool{
+    public static function authenticate(string $email, string $passwd2check): bool{
         $pdo = ConnectionFactory::makeConnection();
         $query = "select password from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
-        $row = $st->fetch();//une seule ligne
+        $row = $st->fetch();
         $hash = $row['password'];
-        return password_verify($passxd2check,$hash);
+        echo $hash;
+        return (password_verify($passwd2check, $hash));
     }
 
     public static function register(string $nom, string $prenom, string $email, string $pass, int $idimage): bool {

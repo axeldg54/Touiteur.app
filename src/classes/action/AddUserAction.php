@@ -26,7 +26,7 @@ class AddUserAction extends Action {
             $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
             $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $password = filter_var($_POST['password']);
+            $password = $_POST['password'];
 
             try {
                 if (inscr::register($nom,$prenom,$email, $password, 0)) $htmlContent = "Vous avez créé votre compte en tant que " . $email;
