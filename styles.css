@@ -212,12 +212,14 @@ body {
   padding: 10px;
   border-radius: 20px;
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 0; /* Ajusté pour être collé à gauche */
+  align-self: flex-start; /* Ajustement pour l'alignement à gauche */
 }
 
 .widgets__input input {
   border: none;
   background-color: var(--twitter-background);
+  flex: 1; /* Permet à l'input de prendre l'espace disponible */
 }
 
 .widgets__searchIcon {
@@ -258,4 +260,51 @@ body {
 .sidebarOption:hover {
   background-color: #e8f5fe;
 }
+/* styliser les boutons */
+.loginButton {
+  padding: 10px 20px;
+  margin-right: 10px; /* Espacement entre les boutons */
+  border: none;
+  color: white;
+  background-color: dimgray;
+  border-radius: 20px; /* Boutons arrondis */
+  cursor: pointer;
+  outline: none;
+}
 
+.widgets {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+/* pour ajuster la taille et l'espacement des icônes de recherche si nécessaire */
+.widgets__searchIcon {
+  /* nos styles ici si on souhaite ajuster l'icône */
+}
+
+.widgets__loginButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 1px;
+}
+
+.loginButton {
+  /*  CSS pour les boutons */
+}
+
+
+.widgets__searchIcon {
+  /*  CSS pour l'icône */
+}
+
+.widgets__widgetContainer {
+  margin-top: 15px;
+  margin-left: 0; /* Ajusté pour être collé à gauche */
+  padding: 20px;
+  background-color: #f5f8fa;
+  border-radius: 20px;
+  align-self: flex-start; /* Ajustement pour l'alignement à gauche */
+}
