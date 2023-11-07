@@ -19,11 +19,16 @@ class RendererTouite {
     }
 
     public function long(): string {
+        $t = "";
+        foreach ($this->touite->getTags() as $tag) {
+            $t = $t . ", " . $tag->__get("libelle");
+        }
         return "<h1>{$this->touite->__get("titre")}</h1>
                 <h2>{$this->touite->__get("auteur")}</h2>
                 <p>{$this->touite->__get("date")->format("F j, Y, g:i a")}</p>
                 <p>{$this->touite->__get("texte")}</p>
                 <p>{$this->touite->__get("score")}</p>
+                <p>$t</p>
                 <img src={$this->touite->__get("image")->__get("chemin")}>";
     }
 

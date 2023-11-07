@@ -33,7 +33,7 @@ class Touite{
         $this->date = new DateTime();
         $this->titre = $titre;
         $this->image = $i;
-        $this->tags[] = [];
+        $this->tags = array();
     }
 
     public function __get(string $attr) : mixed{
@@ -47,6 +47,10 @@ class Touite{
 
     public function addTag(Tag $t) {
         array_push($this->tags, $t);
+    }
+
+    public function getTags() : array {
+        return $this->tags;
     }
 
 }
