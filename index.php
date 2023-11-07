@@ -13,6 +13,7 @@ use iutnc\deefy\render\Renderer;
 use iutnc\deefy\image\Image;
 
 ConnectionFactory::setConfig('./conf/connexion.ini');
+/**
 $image = new Image("rectangle", "/img/rectangle.png");
 $tag = new Tag("tag 1", "tag 1");
 $touite = new Touite("hello world", "Axel", "Titre 1", $image);
@@ -32,3 +33,5 @@ foreach($listeTouites->tabTouites as $key => $val){
 
 echo $touiteRender->render(2);
 echo $touiteRender->render(1);
+ */
+
