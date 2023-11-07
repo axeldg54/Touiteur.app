@@ -8,7 +8,7 @@ class inscr
 {
     public static function authenticate(string $email, string $passxd2check): bool{
         $pdo = ConnectionFactory::makeConnection();
-        $query = "select passwd from Utilisateur where email = ?";
+        $query = "select password from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
         $row = $st->fetch();//une seule ligne
