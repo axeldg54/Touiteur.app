@@ -1,6 +1,7 @@
 <?php
 declare(strict_types = 1);
 namespace iutnc\deefy\render;
+use iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\touite\Touite;
 
 class RendererTouite {
@@ -12,16 +13,19 @@ class RendererTouite {
     }
 
     public function compact(): string {
-        return "<h1>{$this->touite->getTitre()}</h1>
-                <h2>{$this->touite->getAuteur()}</h2>";
+        return "<h1>{$this->touite->__get("titre")}</h1>
+                <h2>{$this->touite->__get("auteur")}</h2>";
     }
 
+    /**
+     * @throws InvalidPropertyNameException
+     */
     public function long(): string {
-        return "<h1>{$this->touite->getTitre()}</h1>
-                <h2>{$this->touite->getAuteur()}</h2>
-                <p>{$this->touite->getDate()->format("F j, Y, g:i a")}</p>
-                <p>{$this->touite->getTexte()}</p>
-                <p>{$this->touite->getScore()}</p>";
+        return "<h1>{$this->touite->__get("titre")}</h1>
+                <h2>{$this->touite->__get("auteur")}</h2>
+                <p>{$this->touite->__get("date")->format("F j, Y, g:i a")}</p>
+                <p>{$this->touite->__get("texte")}</p>
+                <p>{$this->touite->__get("score")}</p>";
     }
 
 }
