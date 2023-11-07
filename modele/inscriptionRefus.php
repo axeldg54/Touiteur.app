@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue sur Touiteur.app</title>
+    <title>Inscription</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Bienvenue sur Touiteur.app</h1>
+<h1>Touiteur.app</h1>
 
-<div class="welcome-box">
-    <p>Merci de vous être connecté avec succès à Touiteur.app. Vous êtes prêt à commencer à touiter et interagir avec d'autres utilisateurs.</p>
-    <p><a href="?action=">Accueil</a></p>
+<div class="login-box">
+    <form id="form" method="POST" action="index.php?action=register" enctype="multipart/form-data" class="login-container">
+        <h2>Inscription</h2>
+        <div class="input-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" value="User" required>
+        </div>
+        <div class="input-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" value="One" required>
+        </div>
+        <div class="input-group">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" value="user1@mail.com" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" value="User1User1*" required>
+        </div>
+        <input type="submit" value="Inscription" class="login-button">
+        <div class="footer">
+            <small>Déjà membre ? <a href="?action=sign-in">Connectez-vous</a></small>
+            <p class="msgRefus">mot de passe non sécurisé ou email déjà utilisée</p>
+        </div>
+
+    </form>
 </div>
 
 </body>
@@ -31,8 +54,8 @@
 
     h1 {
         position: absolute;
-        top: 5%;
-        left: 50%;
+        top: 35%;
+        left: 15%;
         transform: translate(-50%, -50%);
         color: whitesmoke;
         font-size: 60px;
@@ -91,5 +114,9 @@
     .footer a {
         text-decoration: none;
         color: #000;
+    }
+
+    .msgRefus {
+        color: red;
     }
 </style>
