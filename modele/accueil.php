@@ -1,140 +1,312 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Touiteur</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-  </head>
-  <body>
-    <div class="sidebar">
+</head>
+<body>
+<div class="sidebar">
 
-      <h1><center>Touite</center></h1>
+    <h1>
+        <center>Touite</center>
+    </h1>
 
-      <i class="fab fa-touiteur"></i>
+    <i class="fab fa-touiteur"></i>
 
-      <!-- Déroulement de la liste des touites -->
-      <div class="sidebarOption">
+    <!-- Déroulement de la liste des touites -->
+    <div class="sidebarOption">
         <select id="tweets-dropdown" class="sidebar__dropdown">
-          <option value="">Selectionner touite</option>
-          <option value="tweet1">touite 1</option>
-          <option value="tweet2">touite 2</option>
-          <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
+            <option value="">Selectionner touite</option>
+            <option value="tweet1">touite 1</option>
+            <option value="tweet2">touite 2</option>
+            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
         </select>
-      </div>
+    </div>
 
-      <!-- Déroulement de la liste des auteurs -->
-      <div class="sidebarOption">
+    <!-- Déroulement de la liste des auteurs -->
+    <div class="sidebarOption">
         <select id="authors-dropdown" class="sidebar__dropdown">
-          <option value="">Selectionner auteur</option>
-          <option value="author1">auteur 1</option>
-          <option value="author2">auteur 2</option>
-          <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
+            <option value="">Selectionner auteur</option>
+            <option value="author1">auteur 1</option>
+            <option value="author2">auteur 2</option>
+            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
         </select>
-      </div>
+    </div>
 
-      <!-- Déroulement de la liste des auteurs -->
-      <div class="sidebarOption">
+    <!-- Déroulement de la liste des auteurs -->
+    <div class="sidebarOption">
         <select id="tags-dropdown" class="sidebar__dropdown">
-          <option value="">Select Tag</option>
-          <option value="tag1">#tag1</option>
-          <option value="tag2">#tag2</option>
-          <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
+            <option value="">Select Tag</option>
+            <option value="tag1">#tag1</option>
+            <option value="tag2">#tag2</option>
+            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
         </select>
-      </div>
-
-      <button class="sidebar__tweet">Touite</button>
     </div>
-    <!-- sidebar fin -->
+</div>
+<!-- sidebar fin -->
 
 
-    <!-- feed debut -->
-    <div class="feed">
-      <div class="feed__header">
-          <h2>Accueil</h2>
-      </div>
+<!-- feed debut -->
+<div class="feed">
 
-      <!-- touitebox debut -->
-      <div class="tweetBox">
-        <form>
-          <div class="tweetbox__input">
-            <img
-              src ="images/user.png"
-              alt=""
-            />
-            <input type="text" placeholder="Quoi de neuf ?" />
-          </div>
-          <button class="tweetBox__tweetButton">Touite</button>
-        </form>
-      </div>
-      <!-- touite box fin -->
+    <div class="feed__static">
 
-      <!-- post debut -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src ="images/user.png"
-            alt=""
-          />
+        <div class="feed__header">
+            <h2>Accueil</h2>
         </div>
 
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                User
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@user</span>
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="images/what.avif"
-            alt=""
-          />
-        </div>
-      </div>
-      <!-- post fin -->
+        <!-- touitebox debut -->
+        <div class="tweetBox">
+            <button class="btn-touiter">Touiter</button>
 
-      <!-- post debut -->
-      <div class="post">
-        <div class="post__avatar">
-          <img
-            src ="images/user.png"
-            alt=""
-          />
-        </div>
+            <!--         ANCIENNE FORME | ZONE TEXTUELLE
+            <form>
+              <div class="tweetbox__input">
+                <img
+                  src ="images/user.png"
+                  alt=""
+                />
+                <input type="text" placeholder="Quoi de neuf ?" />
+              </div>
+              <button class="tweetBox__tweetButton">Touite</button>
+            </form>
+            -->
 
-        <div class="post__body">
-          <div class="post__header">
-            <div class="post__headerText">
-              <h3>
-                User
-                <span class="post__headerSpecial"
-                  ><span class="material-icons post__badge"> verified </span>@user</span
-                >
-              </h3>
-            </div>
-            <div class="post__headerDescription">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-          <img
-            src="images/what.avif"
-            alt=""
-          />
         </div>
-      </div>
-      <!-- post fin -->
     </div>
-    <!-- feed fin -->
+    <!-- feed__static fin -->
+
+    <!-- touite box fin -->
+
+    <div class="posts__container">
+
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span>
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+        <!-- post debut -->
+        <div class="post">
+            <div class="post__avatar">
+                <img
+                        src="images/user.png"
+                        alt=""
+                />
+            </div>
+
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            User
+                            <span class="post__headerSpecial"
+                            ><span class="material-icons post__badge"> verified </span>@user</span
+                            >
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <img
+                        src="images/what.avif"
+                        alt=""
+                />
+            </div>
+        </div>
+        <!-- post fin -->
+
+    </div>
+    <!-- posts__container fin -->
+
+
+</div>
+<!-- feed fin -->
 
     <!-- widgets debut -->
     <div class="widgets">
@@ -160,6 +332,7 @@
 </html>
 
 <style>
+
     * {
         margin: 0;
         padding: 0;
@@ -169,6 +342,7 @@
     body {
         --twitter-color: #3f4e4e;
         --twitter-background: #e6ecf0;
+
     }
 
     .sidebarOption {
@@ -469,5 +643,33 @@
         background-color: #f5f8fa;
         border-radius: 20px;
         align-self: flex-start; /* Ajustement pour l'alignement à gauche */
+    }
+
+    .btn-touiter {
+        padding: 30px 20px; /* Ajustez la taille selon vos besoins */
+        font-size: 1.5em; /* Ajustez la taille de la police comme vous le souhaitez */
+        background-color: darkgray; /* Choisissez une couleur de fond */
+        color: white; /* Choisissez une couleur de texte */
+        border: none;
+        border-radius: 20px; /* Ajustez pour l'arrondissement des coins */
+        cursor: pointer;
+        margin: 20px 0; /* Ajoutez un peu d'espace avant et après le bouton */
+        display: block; /* Si vous voulez que le bouton soit centré */
+        width: 35%; /* ou une certaine largeur selon votre mise en page */
+        margin-left: auto; /* Si 'display: block' est réglé, cela centrera le bouton */
+        margin-right: auto; /* Si 'display: block' est réglé, cela centrera le bouton */
+    }
+
+    .btn-touiter:hover {
+        background-color: midnightblue; /* Couleur lors du survol du bouton */
+    }
+
+    .feed__static {
+        /* Ajoutez les styles nécessaires pour la mise en page statique */
+    }
+
+    .posts__container {
+        max-height: calc(100vh - 150px); /* Ajustez la hauteur selon la hauteur de votre en-tête et bouton touiter */
+        overflow-y: auto; /* Activez le défilement pour les posts uniquement */
     }
 </style>
