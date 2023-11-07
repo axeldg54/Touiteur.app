@@ -14,18 +14,25 @@ class RendererTouite {
 
     public function compact(): string {
         return "<h1>{$this->touite->__get("titre")}</h1>
-                <h2>{$this->touite->__get("auteur")}</h2>";
+                <h2>{$this->touite->__get("auteur")}</h2>
+                <img src={$this->touite->__get("image")->__get("chemin")}>";
     }
 
-    /**
-     * @throws InvalidPropertyNameException
-     */
     public function long(): string {
         return "<h1>{$this->touite->__get("titre")}</h1>
                 <h2>{$this->touite->__get("auteur")}</h2>
                 <p>{$this->touite->__get("date")->format("F j, Y, g:i a")}</p>
                 <p>{$this->touite->__get("texte")}</p>
-                <p>{$this->touite->__get("score")}</p>";
+                <p>{$this->touite->__get("score")}</p>
+                <img src={$this->touite->__get("image")->__get("chemin")}>";
+    }
+
+    public function render(int $selector = 1): string {
+        if ($selector == 1) {
+            return $this->compact();
+        } else {
+            return $this->long();
+        }
     }
 
 }
