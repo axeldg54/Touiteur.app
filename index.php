@@ -6,6 +6,7 @@ session_start();
 require_once 'vendor/autoload.php';
 
 use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\dispatch\Dispatcher;
 use \iutnc\deefy\list\ListTouite;
 use iutnc\deefy\touite\Touite;
 use iutnc\deefy\render\RendererTouite;
@@ -14,6 +15,7 @@ use iutnc\deefy\image\Image;
 use iutnc\deefy\tag\Tag;
 
 ConnectionFactory::setConfig('./conf/connexion.ini');
+/**
 $image = new Image("rectangle", "/img/rectangle.png");
 $tag = new Tag("tag 1", "tag 1");
 $touite = new Touite("hello world", "Axel", "Titre 1", $image);
@@ -32,5 +34,10 @@ $listeTouites->addTouite(new Touite("texte3","auteur3", "titre 3", new Image("de
 foreach($listeTouites->__get("tabTouites") as $key => $val){
     echo (new RendererTouite($val))->render(Renderer::COMPACT);
 }
-//echo $touiteRender->render(2);
-//echo $touiteRender->render(1);
+
+echo $touiteRender->render(2);
+echo $touiteRender->render(1);
+ */
+
+(new Dispatcher())->run();
+
