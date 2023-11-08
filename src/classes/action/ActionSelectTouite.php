@@ -36,7 +36,6 @@ class ActionSelectTouite extends Action{
             new Image($row[$nb]["imgd"], "img/what.png"),
             $row[$nb]["nblike"], new DateTime($row[$nb]["date"]), $tabTags);                    
         
-
         
         $lt = new ListTouite();
         $lt->addTouite($t);

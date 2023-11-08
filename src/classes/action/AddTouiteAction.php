@@ -74,7 +74,7 @@ class AddTouiteAction extends Action
             
         }
         $lt = ListTouite::recupererListeTouites(3);
-        Dispatcher::$tweets = displayListeTouites();  
+        Dispatcher::$tweets = $lt->displayListeTouites();
         return include 'modele/accueil.php';
     }
 }
