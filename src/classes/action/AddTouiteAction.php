@@ -66,7 +66,8 @@ class AddTouiteAction extends Action
             $query = "insert into publier(idTouite,idUser,date) values(?,?,?)";
             $st = $pdo->prepare($query);
             $st->execute([$idTouite,$idUser,(new DateTime())->format("Y-m-d")]);
-            
+
+            $htmlContent = Initialisation::initialiser_Touites();
         }
         $lt = ListTouite::recupererListeTouites(3);
         Dispatcher::$tweets = $lt->displayListeTouites($lt);  
