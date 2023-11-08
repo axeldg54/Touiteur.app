@@ -26,7 +26,10 @@ class Dispatcher {
         else $this->value = '';
     }
 
+
     public function run() {
+        Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();
+        Dispatcher::$selectAuteur = Initialisation::initialiserSelectAuteur();  
         switch ($this->action) {
             case "sign-in" :
                 Dispatcher::$html = (new SignInAction)->execute();
@@ -39,18 +42,14 @@ class Dispatcher {
                 break;
             case "liste-touite":
                 Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
-                Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();  
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;   
             case "liste-auteur":
-                Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
-                Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();  
-                Dispatcher::$selectAuteur = Initialisation::initialiserSelectAuteur();  
+                //Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;                
             default :
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
-                Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
         };
