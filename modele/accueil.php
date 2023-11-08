@@ -6,6 +6,7 @@ use \iutnc\deefy\db\ConnectionFactory;
 ConnectionFactory::setConfig('conf/connexion.ini');
 $tweets = Dispatcher::$tweets;
 $selectTouite = Dispatcher::$selectTouite;
+$selectAuteur = Dispatcher::$selectAuteur;
 
 // METTRE FICHIER CSS A PART DU CODE
 
@@ -36,14 +37,7 @@ echo <<< FIN
     $selectTouite
 
     <!-- Déroulement de la liste des auteurs -->
-    <div class="sidebarOption">
-        <select id="authors-dropdown" class="sidebar__dropdown">
-            <option value="">Selectionner auteur</option>
-            <option value="author1">auteur 1</option>
-            <option value="author2">auteur 2</option>
-            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
-        </select>
-    </div>
+    $selectAuteur
 
     <!-- Déroulement de la liste des auteurs -->
     <div class="sidebarOption">

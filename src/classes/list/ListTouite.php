@@ -22,6 +22,7 @@ class ListTouite{
     protected array $tabTouites;
 
 
+
 /*Constructeur de la classe ListeTouite initialise la liste de Touite*/
     public function __construct(){$this->tabTouites = array();}
 
@@ -81,7 +82,9 @@ class ListTouite{
         return $lt;
     }
 
+
     public static function selectListeTouite(int $nbTouite){
+
         $db = ConnectionFactory::makeConnection();               
         $html = <<< Fin
         <div class="sidebarOption">
@@ -92,10 +95,12 @@ class ListTouite{
         $nb = 0;
         while($nb < $nbTouite){
             // Récupère les touites qui possède un certains tags
+
             $st = $db->prepare(Touite::$query . " where t.idTouite = ?");
             $st->execute([$nb]);
             $nb++;
             $html .= "<option value=?action=" . "liste-touite" ."&value=" . $nb."> touite $nb </option>";            
+        
         }
         $html .= "    
             <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->

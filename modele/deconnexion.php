@@ -11,21 +11,9 @@
 <h1>Touiteur.app</h1>
 
 <div class="login-box">
-    <form id="form" method="POST" action="index.php?action=sign-in" class="login-container">
-        <h2>Connectez-vous</h2>
-        <div class="input-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" value="user1@mail.com" required>
-        </div>
-        <div class="input-group">
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" value="User1User1*" required>
-            <small><a href="#">Mot de passe oublié ?</a></small>
-        </div>
-        <input type="submit" value="Connexion" class="login-button">
-        <div class="footer">
-            <small>Vous n'êtes pas membre ? <a href="?action=register">Inscrivez-vous maintenant</a></small>
-        </div>
+    <form id="form" method="POST" action="index.php?action=deconnexion" class="login-container">
+        <h2>Voulez-vous vraiment vous déconnecter ?</h2>
+        <input type="submit" value="Oui" class="login-button">
     </form>
 </div>
 
@@ -54,6 +42,7 @@
 
     .login-box {
         position: relative;
+        top: -50px;
         margin: auto;
     }
 
@@ -70,21 +59,6 @@
         margin-bottom: 1rem;
     }
 
-    .input-group {
-        margin-bottom: 1rem;
-    }
-
-    .input-group label {
-        display: block;
-    }
-
-    .input-group input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
 
     .login-button {
         width: 100%;

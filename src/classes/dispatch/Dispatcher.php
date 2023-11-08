@@ -4,8 +4,7 @@ namespace iutnc\deefy\dispatch;
 
 use iutnc\deefy\action\ActionSelectTouite;
 use iutnc\deefy\action\AddTouiteAction;
-use iutnc\deefy\action\AddPodcastTrackAction;
-use iutnc\deefy\action\DisplayPlaylistAction;
+use iutnc\deefy\action\DeconnexionAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
 use iutnc\deefy\initialisation\Initialisation;
@@ -57,6 +56,7 @@ class Dispatcher {
         };
         $this->renderPage();
     }
+
 
     private function renderPage() : void {
         echo Dispatcher::$html;
