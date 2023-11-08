@@ -30,9 +30,12 @@ class Tag {
         $st->execute([$idTouite]);
         $tab = array();
         $i = 0;
+        
         while($row = $st->fetchAll()){
-            array_push($tab, new Tag($row[$i]["description"], $row[$i]["libelle"]));
-            $i++;
+            if(count($row) !== 0){
+                array_push($tab, new Tag($row[$i]["description"], $row[$i]["libelle"]));
+                $i++;
+            }
         }
         return $tab;
     }

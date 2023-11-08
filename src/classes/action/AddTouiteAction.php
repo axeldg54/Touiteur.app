@@ -4,14 +4,15 @@ namespace iutnc\deefy\action;
 
 use DateTime;
 use iutnc\deefy\db\ConnectionFactory;
-use iutnc\deefy\initialisation\Initialisation;
+use iutnc\deefy\dispatch\Dispatcher;
+use iutnc\deefy\list\ListTouite;
 
 class AddTouiteAction extends Action
 {
 
     public function execute(): string
     {
-        $htmlContent = include 'modele/accueil.php';
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
@@ -62,14 +63,13 @@ class AddTouiteAction extends Action
 
             // insertion dans publier
             $idUser = $_SESSION['user']['id'];
-            echo $idUser;
             $query = "insert into publier(idTouite,idUser,date) values(?,?,?)";
             $st = $pdo->prepare($query);
             $st->execute([$idTouite,$idUser,(new DateTime())->format("Y-m-d")]);
-
             
-            $htmlContent = Initialisation::initialiser_Touites();
         }
-        return $htmlContent;
+        $lt = ListTouite::recupererListeTouites(3);
+        Dispatcher::$tweets = $lt->displayListeTouites($lt);  
+        return include 'modele/accueil.php';
     }
 }

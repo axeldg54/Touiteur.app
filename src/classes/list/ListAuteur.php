@@ -16,39 +16,40 @@ use \DateTime;
 
 
 /*Classe contient une */
-class ListTouite{
+class ListAuteur{
 
 /*Déclarations des attributs*/
-    protected array $tabTouites;
+    protected array $tabAuteurs;
 
 
 /*Constructeur de la classe ListeTouite initialise la liste de Touite*/
-    public function __construct(){$this->tabTouites = array();}
+    public function __construct(){$this->tabAuteurs = array();}
 
 
-    /** Ajoute un Touite à la liste
-     * @param $touite un Touite
+    /** Ajoute un Auteur à la liste
+     * @param $auteur 
      */
-    public function addTouite(Touite $touite) : void{
-        array_push($this->tabTouites, $touite);
+    public function addTouite(Touite $auteur) : void{
+        array_push($this->tabAuteurs, $auteur);
         $this->trierTouites();
     }
 
 
-    /**Supprime un Touite de la liste
-    @param $touite un Touite*/
-    public function suppTouites(Touite $touite) : void{
-        foreach($this->tabTouites as $key => $val){
-            if($val->__get("auteur") === $touite->__get("auteur")
-            && $val->__get("titre") === $touite->__get("titre")){
-                unset($this->tabPistes[$key]);
+    /**
+    * Supprime un Auteur de la liste
+    * @param $auteur 
+    */
+    public function suppTouites(Touite $auteur) : void{
+        foreach($this->tabAuteurs as $key => $val){
+            if($val->__get("email") === $auteur->__get("email")){
+                unset($this->tabAuteurs[$key]);
             }
         }
     }
 
 
-    public function trierTouites() : void{
-        $this->tabTouites = Tri::tri($this->tabTouites);
+    public function trierAuteurs() : void{
+        $this->tabAuteurs = Tri::tri($this->tabAuteurs);
     }
 
    
@@ -62,7 +63,7 @@ class ListTouite{
     }
 
     
-    public function displayListeTouites() : string{ 
+    public function displayListeAuteurs() : string{ 
         $html = "";
         foreach($this->tabTouites as $key => $val){
             $html .= (new RendererTouite($val))->render(Renderer::LONG);

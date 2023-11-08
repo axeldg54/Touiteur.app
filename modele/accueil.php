@@ -2,11 +2,12 @@
 require_once 'vendor/autoload.php';
 use \iutnc\deefy\dispatch\Dispatcher;
 use \iutnc\deefy\db\ConnectionFactory;
-use \iutnc\deefy\initialisation\Initialisation;
 
 ConnectionFactory::setConfig('conf/connexion.ini');
-$tweets = Initialisation::initialiser_Touites();
-$selectTouite = Initialisation::initialiserSelectTouite();
+$tweets = Dispatcher::$tweets;
+$selectTouite = Dispatcher::$selectTouite;
+
+// METTRE FICHIER CSS A PART DU CODE
 
 echo <<< FIN
 <!DOCTYPE html>
