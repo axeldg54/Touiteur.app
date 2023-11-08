@@ -54,7 +54,6 @@
 
     .login-box {
         position: relative;
-        top: -50px;
         margin: auto;
     }
 

@@ -3,8 +3,7 @@
 namespace iutnc\deefy\dispatch;
 
 use iutnc\deefy\action\AddTouiteAction;
-use iutnc\deefy\action\AddPodcastTrackAction;
-use iutnc\deefy\action\DisplayPlaylistAction;
+use iutnc\deefy\action\DeconnexionAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
 
@@ -29,7 +28,10 @@ class Dispatcher {
                 break;
             case "liste-touite":
                 $htmlContent =  "ici";
-                break;                
+                break;
+            case "deconnexion":
+                $htmlContent = (new DeconnexionAction())->execute();
+                break;
             default :
                 $htmlContent = (new AddTouiteAction())->execute();
         };

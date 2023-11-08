@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-session_start();
 require_once 'vendor/autoload.php';
 
 use iutnc\deefy\db\ConnectionFactory;
@@ -12,7 +11,7 @@ use iutnc\deefy\render\RendererTouite;
 use iutnc\deefy\render\Renderer;
 use iutnc\deefy\image\Image;
 use iutnc\deefy\tag\Tag;
-
+session_start();
 ConnectionFactory::setConfig('./conf/connexion.ini');
 /**
 $image = new Image("rectangle", "/img/rectangle.png");
@@ -39,4 +38,3 @@ echo $touiteRender->render(1);
  */
 
 (new Dispatcher())->run();
-

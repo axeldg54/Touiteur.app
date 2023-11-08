@@ -67,7 +67,7 @@ class AddTouiteAction extends Action
             $st = $pdo->prepare($query);
             $st->execute([$idTouite,$idUser,(new DateTime())->format("Y-m-d")]);
 
-            
+
             $htmlContent = Initialisation::initialiser_Touites();
         }
         return $htmlContent;

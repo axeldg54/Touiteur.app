@@ -13,7 +13,7 @@ class DeconnexionAction extends Action{
         } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (inscr::deconnexion()) {
                 $htmlContent = include 'modele/deconnexionMessage.php';
-                session_destroy();
+                $_SESSION['user'] = null;
             }
         }
         return $htmlContent;

@@ -1,3 +1,5 @@
+<?php
+echo <<< FIN
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,89 +9,74 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<h1>Bienvenue sur Touiteur.app</h1>
-
-<div class="welcome-box">
-    <p>Merci de vous être connecté avec succès à Touiteur.app. Vous êtes prêt à commencer à touiter et interagir avec d'autres utilisateurs.</p>
-    <p><a href="?action=">Accueil</a></p>
-</div>
-
+    <div class="container">
+        <div class="content">
+            <h1>Bienvenue sur Touiteur.app</h1>
+            <div class="user-info">
+                <p>Nom : {$_SESSION['user']['nom']}</p>
+                <p>Prénom : {$_SESSION['user']['prenom']}</p>
+                <p>ID : {$_SESSION['user']['id']}</p>
+            </div>
+            <div class="actions">
+                <a href="?action=accueil">Accueil</a>
+                <a href="?action=sign-in">Connexion</a>
+                <a href="?action=register">Inscription</a>
+                <a href="?action=deconnexion">Se déconnecter</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #8458B3 0%, #E98181 100%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #8458B3 0%, #E98181 100%);
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-    h1 {
-        position: absolute;
-        top: 5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: whitesmoke;
-        font-size: 60px;
-    }
+.container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
 
-    .login-box {
-        position: relative;
-        top: -50px;
-        margin: auto;
-    }
+.content {
+    padding: 20px;
+}
 
-    .login-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 400px;
-        text-align: center;
-    }
+h1 {
+    color: #353b48;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
-    .login-container h2 {
-        margin-bottom: 1rem;
-    }
+.user-info p {
+    color: #353b48;
+    font-size: 16px;
+    margin: 10px 0;
+}
 
-    .input-group {
-        margin-bottom: 1rem;
-    }
+.actions a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background: #353b48;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
 
-    .input-group label {
-        display: block;
-    }
-
-    .input-group input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .login-button {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        background: black;
-        color: white;
-        cursor: pointer;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    .footer a {
-        text-decoration: none;
-        color: #000;
-    }
+.actions a:hover {
+    background: #222831;
+}
 </style>
+FIN;

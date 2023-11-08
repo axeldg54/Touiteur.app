@@ -13,9 +13,8 @@ class inscr
         $st -> execute([$email]);
         $row = $st->fetch();
         $hash = $row['password'];
-        $_SESSION['user'] = ['id'=>$row['idUser'], 'prenom'=>$row['prenom'], 'nom'=>$row['nom']];
         if (password_verify($passwd2check, $hash)){
-            session_start();
+            $_SESSION['user'] = ['id'=>$row['idUser'], 'prenom'=>$row['prenom'], 'nom'=>$row['nom']];
         }
         return (password_verify($passwd2check, $hash));
     }
@@ -41,9 +40,7 @@ class inscr
         if($mdp) {
             $query = "insert into utilisateur(idUser ,nom, prenom, email, password, idimage) values('$id', '$nom','$prenom','$email','$hash','$idimage')";
             $pdo->exec($query);
-            session_start();
         }
-
         return $mdp;
     }
 
