@@ -1,18 +1,16 @@
 <?php
 
-declare(strict_types=1);
 namespace iutnc\deefy\touite;
 
-use \DateTime;
+use DateTime;
+use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\image\Image;
-use \iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\tag\Tag;
 
-
-/*Classe représentant un Touite*/
-class Touite{
-
-/*Déclarations des attributs*/
+class Touite
+{
+    /*Déclarations des attributs*/
     private string $texte, $auteur, $titre;
     private int $score;
     private DateTime $date;
@@ -26,7 +24,7 @@ class Touite{
     @param $auteur auteur du touite
     @param $titre titre du touite
      */
-    public function __construct(string $texte, string $auteur, Image $i, int $score, DateTime $date, array $tags){                        
+    public function __construct(string $texte, string $auteur, Image $i, int $score, DateTime $date, array $tags){
         $this->texte = $texte;
         $this->score = $score;
         $this->auteur = $auteur;
@@ -34,7 +32,7 @@ class Touite{
         $this->image = $i;
         $this->tags = $tags;
     }
-    
+
 
     public function __get(string $attr) : mixed{
         if(!property_exists($this, $attr)){
@@ -53,4 +51,29 @@ class Touite{
         return $this->tags;
     }
 
+    public static function insertTuite($idImage) : int {
+        // connexion bd
+        $pdo = ConnectionFactory::makeConnection();
+
+        // incrementation de l'id du tuite
+        $query = "select max(idTouite) as max from touite";
+        $st = $pdo->prepare($query);
+        $st->execute();
+        $row = $st->fetch();
+        $idTouite = $row['max'] + 1;
+
+        // insertion du touite
+        $contenu = $_POST['contenu'];
+        $query = "insert into touite(idTouite,texte,idImage) values(?,?,?)";
+        $st = $pdo->prepare($query);
+        $st->execute([$idTouite, $contenu, $idImage]);
+
+        // insertion dans publier
+        $idUser = $_SESSION['user']['id'];
+        $query = "insert into publier(idTouite,idUser,date) values(?,?,?)";
+        $st = $pdo->prepare($query);
+        $st->execute([$idTouite,$idUser,(new DateTime())->format("Y-m-d")]);
+
+        return $idTouite;
+    }
 }

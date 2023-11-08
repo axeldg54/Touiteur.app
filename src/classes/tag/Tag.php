@@ -39,4 +39,53 @@ class Tag {
         }
         return $tab;
     }
+
+    public static function insertTag($idTouite) {
+        // connexion bd
+        $pdo = ConnectionFactory::makeConnection();
+
+        $contenu = $_POST['contenu'];
+        // trouver les # dans le touite et les ajouter dans la liste tags
+        $lettre = "";
+        $tag = "";
+        $tags = array();
+        for ($i = strlen($contenu); $i > 0 ; $i--) {
+            if (isset($contenu[$i])) $lettre = $contenu[$i];
+            $tag .= $lettre;
+            if ($lettre === "#") {
+                array_push($tags, strrev($tag));
+            }
+            if ($lettre === " ") {
+                $tag = "";
+            }
+        }
+
+        // insertion dans la table tag et contient
+        foreach ($tags as $key => $value) {
+            // vérifie si le tag n'existe pas déjà
+            $query = "select idTag from tag where libelle = ?";
+            $st = $pdo->prepare($query);
+            $idTag = $st->execute([$value]);
+
+            // si il existe pas alors il le créé
+            if ($st->rowCount() < 1) {
+                // incrementation de l'id du tag
+                $query = "select max(idTag) as max from tag";
+                $st = $pdo->prepare($query);
+                $st->execute();
+                $row = $st->fetch();
+                $idTag = $row['max'] + 1;
+
+                // insertion tag
+                $query = "insert into tag(idTag,libelle,description) values(?,?,?)";
+                $st = $pdo->prepare($query);
+                $st->execute([$idTag,$value,"description du tag"]);
+            }
+
+            // insertion dans la table contient
+            $query = "insert into contient(idTouite, idTag) values(?,?)";
+            $st = $pdo->prepare($query);
+            $st->execute([$idTouite, $idTag]);
+        }
+    }
 }
