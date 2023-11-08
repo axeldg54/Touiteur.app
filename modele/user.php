@@ -106,14 +106,10 @@ h1 {
         text-decoration: none;
         color: #000;
     }
-<<<<<<< HEAD
-</style>
-Fin;
-=======
-    
+
+   
     .actions a:hover {
         background: #222831;
     }
 </style>
 FIN;
->>>>>>> 1f72b1aa8acf13ad87229cb62d6649c4c63713bd
