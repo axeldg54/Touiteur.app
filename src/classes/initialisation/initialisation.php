@@ -43,9 +43,11 @@ class Initialisation{
             $tabTags = Tag::recupererTags($row[$nb]["idTouite"]);
             
             $t = new Touite($row[$nb]["texte"], $row[$nb]["nom"], 
-                new Image($row[$nb]["imgd"], $row[$nb]["chemin"]),
+                new Image($row[$nb]["imgd"], "img/what.png"),
                     $row[$nb]["nblike"], new DateTime($row[$nb]["date"]), $tabTags);                    
             $nb++;
+            // "/img/".$row[$nb]["chemin"]
+            //echo "img/what.png";
             $lt->addTouite($t);
             }
         }

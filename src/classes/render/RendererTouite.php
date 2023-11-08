@@ -25,7 +25,7 @@ class RendererTouite {
         <div class='post__header'>
             <div class='post__headerText'>
                 <h3>
-                    User
+                " . $this->touite->__get("auteur") . "
                     <span class='post__headerSpecial'
                     ><span class='material-icons post__badge'> verified </span>@user</span
                     >
@@ -38,7 +38,6 @@ class RendererTouite {
         <img
             src='../images/what.avif'
             alt=''/>
-            <p>". $this->touite->__get("date")->format("F j, Y, g:i a") ."</p>
         </div>";
     }
 

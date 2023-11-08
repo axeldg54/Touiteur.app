@@ -61,45 +61,7 @@ class ListTouite{
     public function displayListeTouites(ListTouite $lt) : string{ 
         $html = "";
         foreach($lt->__get("tabTouites") as $key => $val){
-            $html .= (new RendererTouite($val))->render(Renderer::COMPACT); 
-            /**$html .= <<< FIN
-            <style>
-            .posts__container {
-                max-height: calc(100vh - 150px); 
-                overflow-y: auto; 
-            }        
-            .post__body img {
-                width: 450px;
-                object-fit: contain;
-                border-radius: 20px;
-            }
-            .post__headerText h3 {
-                font-size: 15px;
-                margin-bottom: 5px;
-            }
-            
-            .post__headerSpecial {
-                font-weight: 600;
-                font-size: 12px;
-                color: gray;
-            }
-            .post__headerDescription {
-                margin-bottom: 10px;
-                font-size: 15px;
-            }
-            .post {
-                display: flex;
-                align-items: flex-start;
-                border-bottom: 1px solid var(--twitter-background);
-                padding-bottom: 10px;
-            }
-            .post__body {
-                flex: 1;
-                padding: 10px;
-                
-            }
-            </style>
-            FIN;*/
+            $html .= (new RendererTouite($val))->render(Renderer::LONG);
         }
         return $html;
     }

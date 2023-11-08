@@ -68,26 +68,23 @@ echo <<< FIN
 
         <!-- touitebox debut -->
         <div class="tweetBox">
-            <button class="btn-touiter">Touiter</button>
+            <!--<a href="?action=add-touite" class="btn-touiter">Touiter</a>-->
 
-            <!--         ANCIENNE FORME | ZONE TEXTUELLE
-            <form>
+            <form id="form" method="POST" action="index.php?action=add-touite" enctype="multipart/form-data">
               <div class="tweetbox__input">
-                <img
-                  src ="images/user.png"
-                  alt=""
-                />
-                <input type="text" placeholder="Quoi de neuf ?" />
+                <img src ="img/user.png" alt=""/>
+                  <input type="text" id="contenu" name="contenu" value="ceci est un tweet #cool" placeholder="Quoi de neuf ?" required>
+                  <input type="file" id="file" name="file">
               </div>
-              <button class="tweetBox__tweetButton">Touite</button>
+                <input type="submit" value="Ajouter" class="tweetBox__tweetButton" placeholder="Touite">
             </form>
-            -->
 
         </div>
     </div>
     <!-- feed__static fin -->
 
     <!-- touite box fin -->
+
 
     <div class="posts__container">        
         $tweets
