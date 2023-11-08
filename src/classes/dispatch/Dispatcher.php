@@ -8,6 +8,7 @@ use iutnc\deefy\action\DisplayPlaylistAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
 
+
 class Dispatcher {
     private string $action;
     public function __construct() {
@@ -26,6 +27,9 @@ class Dispatcher {
             case "add-touite" :
                 $htmlContent = (new AddTouiteAction())->execute();
                 break;
+            case "liste-touite":
+                $htmlContent =  "ici";
+                break;                
             default :
                 $htmlContent = include 'modele/accueil.php';
         };
@@ -33,6 +37,14 @@ class Dispatcher {
     }
 
     private function renderPage(string $html) : void {
+
+
+
+        // CODE HTML DEVRAIT ETRE ICI
+
+
+
         echo $html;
     }
+
 }

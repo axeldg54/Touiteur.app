@@ -26,15 +26,15 @@ class Touite{
     @param $auteur auteur du touite
     @param $titre titre du touite
      */
-    public function __construct(string $texte, string $auteur, string $titre, Image $i){
+    public function __construct(string $texte, string $auteur, Image $i, int $score, DateTime $date, array $tags){                        
         $this->texte = $texte;
-        $this->score = 0;
+        $this->score = $score;
         $this->auteur = $auteur;
-        $this->date = new DateTime();
-        $this->titre = $titre;
+        $this->date = $date;
         $this->image = $i;
-        $this->tags = array();
+        $this->tags = $tags;
     }
+    
 
     public function __get(string $attr) : mixed{
         if(!property_exists($this, $attr)){
