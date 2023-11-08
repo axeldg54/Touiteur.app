@@ -14,6 +14,8 @@ class AddUserAction extends Action {
             $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
             $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            
+            // Ajouter filtrer pour password
             $password = $_POST['password'];
 
             try {
