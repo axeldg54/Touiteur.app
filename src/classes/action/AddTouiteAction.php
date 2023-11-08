@@ -4,6 +4,7 @@ namespace iutnc\deefy\action;
 
 use DateTime;
 use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\initialisation\Initialisation;
 
 class AddTouiteAction extends Action
 {
@@ -64,7 +65,10 @@ class AddTouiteAction extends Action
             echo $idUser;
             $query = "insert into publier(idTouite,idUser,date) values(?,?,?)";
             $st = $pdo->prepare($query);
-            $st->execute([$idTouite,$idUser,new DateTime("Y-m-d\\TH:i:sP")]);
+            $st->execute([$idTouite,$idUser,(new DateTime())->format("Y-m-d")]);
+
+            
+            $htmlContent = Initialisation::initialiser_Touites();
         }
         return $htmlContent;
     }
