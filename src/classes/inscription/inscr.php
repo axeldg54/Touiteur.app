@@ -14,6 +14,9 @@ class inscr
         $row = $st->fetch();
         $hash = $row['password'];
         $_SESSION['user'] = ['id'=>$row['idUser'], 'prenom'=>$row['prenom'], 'nom'=>$row['nom']];
+        if (password_verify($passwd2check, $hash)){
+            session_start();
+        }
         return (password_verify($passwd2check, $hash));
     }
 
@@ -38,6 +41,7 @@ class inscr
         if($mdp) {
             $query = "insert into utilisateur(idUser ,nom, prenom, email, password, idimage) values('$id', '$nom','$prenom','$email','$hash','$idimage')";
             $pdo->exec($query);
+            session_start();
         }
 
         return $mdp;
@@ -51,6 +55,20 @@ class inscr
         $upper = preg_match("#[A-Z]#", $pass); // au moins une majuscule
         if (!$length || !$digit || !$special || !$lower || !$upper) return false;
         else return true;
+    }
+
+    public static function deconnexion() : bool{
+        $pdo = ConnectionFactory::makeConnection();
+        $query = "select count(idUser) as compteur from Utilisateur where idUser = ?";
+        $st = $pdo-> prepare($query);
+        $st -> execute([$_SESSION['user']['id']]);
+        $row = $st->fetch();
+        if($row['compteur'] === 1){
+            $result = true;
+        }else{
+            $result = false;
+        }
+        return $result;
     }
 
 }
