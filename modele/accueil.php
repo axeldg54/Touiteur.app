@@ -1,3 +1,14 @@
+<?php
+require_once 'vendor/autoload.php';
+use \iutnc\deefy\dispatch\Dispatcher;
+use \iutnc\deefy\db\ConnectionFactory;
+use \iutnc\deefy\initialisation\Initialisation;
+
+ConnectionFactory::setConfig('conf/connexion.ini');
+$tweets = Initialisation::initialiser_Touites();
+$selectTouite = Initialisation::initialiserSelectTouite();
+
+echo <<< FIN
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,14 +32,7 @@
     <i class="fab fa-touiteur"></i>
 
     <!-- Déroulement de la liste des touites -->
-    <div class="sidebarOption">
-        <select id="tweets-dropdown" class="sidebar__dropdown">
-            <option value="">Selectionner touite</option>
-            <option value="tweet1">touite 1</option>
-            <option value="tweet2">touite 2</option>
-            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
-        </select>
-    </div>
+    $selectTouite
 
     <!-- Déroulement de la liste des auteurs -->
     <div class="sidebarOption">
@@ -85,224 +89,11 @@
 
     <!-- touite box fin -->
 
-    <div class="posts__container">
-
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span>
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-        <!-- post debut -->
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                        src="images/user.png"
-                        alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            User
-                            <span class="post__headerSpecial"
-                            ><span class="material-icons post__badge"> verified </span>@user</span
-                            >
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <img
-                        src="images/what.avif"
-                        alt=""
-                />
-            </div>
-        </div>
-        <!-- post fin -->
-
+    <div class="posts__container">        
+        $tweets
     </div>
     <!-- posts__container fin -->
+    
 
 
 </div>
@@ -673,3 +464,4 @@
         overflow-y: auto; /* Activez le défilement pour les posts uniquement */
     }
 </style>
+FIN;
