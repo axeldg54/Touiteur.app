@@ -7,6 +7,8 @@ use iutnc\deefy\action\AddTouiteAction;
 use iutnc\deefy\action\DeconnexionAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
+use iutnc\deefy\action\ActionSelectAuteur;
+use iutnc\deefy\action\ActionSelectTag;
 use iutnc\deefy\initialisation\Initialisation;
 
 
@@ -17,6 +19,7 @@ class Dispatcher {
     public static string $tweets="";
     public static string $selectTouite="";
     public static string $selectAuteur="";
+    public static string $selectTag="";
     
     
     public function __construct() {
@@ -30,24 +33,33 @@ class Dispatcher {
     public function run() {
         Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();
         Dispatcher::$selectAuteur = Initialisation::initialiserSelectAuteur();  
+        Dispatcher::$selectTag = Initialisation::initialiserSelectTag();
         switch ($this->action) {
             case "sign-in" :
-                Dispatcher::$html = (new SignInAction)->execute();
+                Dispatcher::$html = (new SignInAction)->execute();                
                 break;
             case "register" :
                 Dispatcher::$html = (new AddUserAction)->execute();
+                Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 break;
             case "add-touite" :
-                Dispatcher::$tweets = (new AddTouiteAction())->execute();
+                Dispatcher::$html = (new AddTouiteAction())->execute();
                 break;
             case "liste-touite":
                 Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;   
             case "liste-auteur":
-                //Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
+                Dispatcher::$tweets = (new ActionSelectAuteur($this->value))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
-                break;                
+                break; 
+            case "liste-tag":
+                Dispatcher::$tweets = (new ActionSelectTag($this->value))->execute();
+                Dispatcher::$html = include 'modele/accueil.php';
+                break;
+            case "deconnexion":
+                Dispatcher::$html = (new DeconnexionAction())->execute();
+                break;    
             default :
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';

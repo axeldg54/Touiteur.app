@@ -7,6 +7,7 @@ ConnectionFactory::setConfig('conf/connexion.ini');
 $tweets = Dispatcher::$tweets;
 $selectTouite = Dispatcher::$selectTouite;
 $selectAuteur = Dispatcher::$selectAuteur;
+$selectTag = Dispatcher::$selectTag;
 
 // METTRE FICHIER CSS A PART DU CODE
 
@@ -40,14 +41,7 @@ echo <<< FIN
     $selectAuteur
 
     <!-- Déroulement de la liste des auteurs -->
-    <div class="sidebarOption">
-        <select id="tags-dropdown" class="sidebar__dropdown">
-            <option value="">Select Tag</option>
-            <option value="tag1">#tag1</option>
-            <option value="tag2">#tag2</option>
-            <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->
-        </select>
-    </div>
+    $selectTag
 </div>
 <!-- sidebar fin -->
 
