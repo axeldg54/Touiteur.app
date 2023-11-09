@@ -17,7 +17,7 @@ use \iutnc\deefy\user\User;
 
 
 /*Classe contient une */
-class ListAuteur{
+class ListTag{
 
   
     public function __get(string $attr) : mixed{
@@ -35,16 +35,16 @@ class ListAuteur{
         $html = <<< Fin
         <div class="sidebarOption">
         <select id="tweets-dropdown" class="sidebar__dropdown" onchange="window.location.href=this.value">
-            <option value="">Selectionner un auteur</option>
+            <option value="">Selectionner un tag</option>
         Fin;
 
         $nb = 0;
         while($nb < $nbTouite){
             // Récupère les touites qui possède un certains tags
-            $st = $db->prepare(Touite::$query . " where u.idUser = ?");
+            $st = $db->prepare(Touite::$query . " where tag.idtag = ?");
             $st->execute([$nb]);
             $nb++;
-            $html .= "<option value=?action=" . "liste-auteur" ."&value=" . $nb."> auteur $nb </option>";            
+            $html .= "<option value=?action=" . "liste-tag" ."&value=" . $nb."> tag $nb </option>";            
         }
         $html .= "    
             <!-- ajout supplementaires si besoin (à configurer pour ajout automatique -->

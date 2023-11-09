@@ -5,6 +5,7 @@ namespace iutnc\deefy\initialisation;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\list\ListAuteur;
 use iutnc\deefy\list\ListTouite;
+use iutnc\deefy\list\ListTag;
 use iutnc\deefy\tag\Tag;
 use iutnc\deefy\touite\Touite;
 use \iutnc\deefy\image\Image;
@@ -41,5 +42,10 @@ class Initialisation{
     public static function initialiserSelectAuteur() : string{
         $selectListeAuteur = ListAuteur::selectListeTouite(3);
         return $selectListeAuteur;
+    }
+
+    public static function initialiserSelectTag() : string{
+        $selectListeTag = ListTag::selectListeTouite(3);
+        return $selectListeTag;
     }
 }

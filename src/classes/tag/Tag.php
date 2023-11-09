@@ -49,7 +49,7 @@ class Tag {
         $lettre = "";
         $tag = "";
         $tags = array();
-        for ($i = strlen($contenu); $i > 0 ; $i--) {
+        for ($i = strlen($contenu); $i > -1 ; $i--) {
             if (isset($contenu[$i])) $lettre = $contenu[$i];
             $tag .= $lettre;
             if ($lettre === "#") {

@@ -1,6 +1,7 @@
 create table Touite (
 idTouite int(10) not null,
 texte varchar(235),
+idImage int(10),
 primary key (idTouite)
 );
 
@@ -23,6 +24,8 @@ idUser int(10) not null,
 nom varchar(50),
 prenom varchar(50),
 email varchar(50),
+password varchar(200),
+idImage int(10),
 primary key(idUser)
 );
 
@@ -36,14 +39,13 @@ primary key(idTouite, idUser)
 create table Contient (
 idTouite int(10) not null,
 idTag int(10) not null,
-idImage int(10) not null,
-primary key(idTouite, idTag, idImage)
+primary key(idTouite, idTag)
 );
 
 create table Suivre (
 idUser int(10) not null,
-idSuivi int(10) not null,
-primary key(idUser, idSuivi)
+idUser2 int(10) not null,
+primary key(idUser, idUser2)
 );
 
 create table Abonnement (
@@ -52,25 +54,26 @@ idTag int(10) not null,
 primary key(idUser, idTag)
 );
 
-create table Noter (
+create table Likes (
 idUser int(10) not null,
 idTouite int(10) not null,
-note int(2),
+nbLike int(2),
 primary key(idUser, idTouite)
 );
+
+alter table touite add foreign key (idImage) references Image(idImage);
 
 alter table publier add foreign key (idTouite) references Touite(idTouite);
 alter table publier add foreign key (idUser) references Utilisateur(idUser);
 
 alter table contient add foreign key (idTouite) references Touite(idTouite);
 alter table contient add foreign key (idTag) references Tag(idTag);
-alter table contient add foreign key (idImage) references Image(idImage);
 
 alter table suivre add foreign key (idUser) references Utilisateur(idUser);
-alter table suivre add foreign key (idSuivi) references Utilisateur(idUser);
+alter table suivre add foreign key (idUser2) references Utilisateur(idUser);
 
 alter table abonnement add foreign key (idUser) references Utilisateur(idUser);
 alter table abonnement add foreign key (idTag) references Tag(idTag);
 
-alter table noter add foreign key (idTouite) references Touite(idTouite);
-alter table noter add foreign key (idUser) references Utilisateur(idUser);
+alter table likes add foreign key(idTouite) references Touite(idTouite);
+alter table likes add foreign key(idUser) references Utilisateur(idUser);

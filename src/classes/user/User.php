@@ -14,7 +14,6 @@ class User{
     private string $nom;
     private string $prenom;
     private string $email;
-    private string $pseudo;
 
     /**
 
@@ -23,11 +22,10 @@ class User{
     @param $prenom prenom utilisateur
     @param $email email utilisateur
      */
-    public function __construct(string $nom, string $prenom, string $email, string $pseudo){
+    public function __construct(string $nom, string $prenom, string $email){
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
-        $this->pseudo =$pseudo;
     }
 
     public function __get(string $attr) : mixed{

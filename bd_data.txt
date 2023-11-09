@@ -1,0 +1,111 @@
+INSERT INTO Image (idImage, chemin, description) VALUES
+(1, 'image1.jpg', 'Image de vacances ensoleillées'),
+(2, 'image2.jpg', 'Coucher de soleil sur la plage'),
+(3, 'image3.jpg', 'Selfie avec des amis'),
+(4, 'image4.jpg', 'Image d’une ville nocturne'),
+(5, 'image5.jpg', 'Photographie d’un repas gourmet'),
+(6, 'image6.jpg', 'Concert en plein air'),
+(7, 'image7.jpg', 'Paysage montagneux impressionnant'),
+(8, 'image8.jpg', 'Mon petit chien adorable');
+
+
+INSERT INTO Tag (idTag, libelle, description) VALUES
+(1, 'Vacances', 'Photos de vacances estivales'),
+(2, 'Plage', 'Images de plages magnifiques'),
+(3, 'Amis', 'Photos avec des amis'),
+(4, 'Ville', 'Scènes urbaines et vie en ville'),
+(5, 'Gourmet', 'Plats délicieux et recettes'),
+(6, 'Concert', 'Musique live et festivals'),
+(7, 'Montagne', 'Aventures en haute altitude'),
+(8, 'Animaux', 'Photos et histoires d’animaux domestiques');
+
+
+
+INSERT INTO Utilisateur (idUser, nom, prenom, email, password, idImage) VALUES
+(1, 'Doe', 'John', 'john.doe@example.com', 'motdepasse123', 1),
+(2, 'Smith', 'Alice', 'alice.smith@example.com', '12345678', 2),
+(3, 'Johnson', 'Bob', 'bob.johnson@example.com', 'abcdef', 3),
+(4, 'Lopez', 'Emily', 'emily.lopez@example.com', 'passw0rd', 4),
+(5, 'Martinez', 'Carlos', 'carlos.martinez@example.com', 'mysecretpassword', 5),
+(6, 'Brown', 'Sarah', 'sarah.brown@example.com', 'sarah1234', 6),
+(7, 'Davis', 'James', 'james.davis@example.com', 'jamespassword', 7),
+(8, 'Wilson', 'Olivia', 'olivia.wilson@example.com', 'oliviaspass', 8);
+
+
+
+
+INSERT INTO Touite (idTouite, texte, idImage) VALUES
+(1, 'Super journée à la plage!', 1),
+(2, 'En train de bronzer sous le soleil', 2),
+(3, 'Selfie avec mes amis géniaux!', 3),
+(4, 'La vie en ville, ça ne dort jamais!', 4),
+(5, 'Ce dîner était simplement divin!', 5),
+(6, 'Rien ne vaut un bon concert entre amis!', 6),
+(7, 'Atteindre le sommet, quel accomplissement!', 7),
+(8, 'Regardez qui a décidé de se joindre à ma sieste...', 8);
+
+
+
+INSERT INTO Publier (idTouite, idUser, date) VALUES
+(1, 1, '2023-11-07'),
+(2, 2, '2023-11-07'),
+(3, 3, '2023-11-07'),
+(4, 4, '2023-11-08'),
+(5, 5, '2023-11-08'),
+(6, 6, '2023-11-08'),
+(7, 7, '2023-11-08'),
+(8, 8, '2023-11-08');
+
+
+
+INSERT INTO Contient (idTouite, idTag) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8);
+
+
+INSERT INTO Suivre (idUser, idUser2) VALUES
+(1, 2),
+(2, 3),
+(3, 1),
+(1, 3),
+(1, 4),
+(2, 1),
+(3, 2),
+(4, 5),
+(5, 6),
+(6, 7),
+(7, 8),
+(8, 4);
+
+INSERT INTO Abonnement (idUser, idTag) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(1, 4),
+(2, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(6, 1),
+(7, 2),
+(8, 3);
+
+
+INSERT INTO Likes (idUser, idTouite, nbLike) VALUES
+(1, 2, 10),
+(2, 3, 5),
+(3, 1, 7),
+(1, 3, 15),
+(2, 4, 20),
+(3, 5, 12),
+(4, 6, 45),
+(5, 7, 33),
+(6, 8, 21),
+(7, 1, 8),
+(8, 2, 13);
