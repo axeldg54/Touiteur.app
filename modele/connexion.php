@@ -1,3 +1,6 @@
+<?php
+$refus = \iutnc\deefy\dispatch\Dispatcher::$refus;
+echo <<<FIN
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,6 +29,7 @@
         <div class="footer">
             <small>Vous n'êtes pas membre ? <a href="?action=register">Inscrivez-vous maintenant</a></small>
         </div>
+        <p class="msgRefus">$refus</p>
     </form>
 </div>
 
@@ -105,4 +109,9 @@
         text-decoration: none;
         color: #000;
     }
+    
+    .msgRefus {
+        color: red;
+    }
 </style>
+FIN;

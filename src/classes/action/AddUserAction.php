@@ -1,6 +1,7 @@
 <?php
 
 namespace iutnc\deefy\action;
+use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\exception\AuthException;
 use iutnc\deefy\inscription\inscr;
 
@@ -19,8 +20,13 @@ class AddUserAction extends Action {
             $password = $_POST['password'];
 
             try {
-                if (inscr::register($nom,$prenom,$email, $password, 0)) $htmlContent = include 'modele/accueil.php';
-                else $htmlContent = include 'modele/inscriptionRefus.php';
+                if (inscr::register($nom,$prenom,$email, $password, 0)) {
+                    Dispatcher::$refus = "";
+                    $htmlContent = include 'modele/accueil.php';
+                } else {
+                    Dispatcher::$refus = "mot de passe non sécurisé ou email déjà utilisée";
+                    $htmlContent = include 'modele/inscription.php';
+                }
             } catch (AuthException $e) {
                 echo $e;
             }

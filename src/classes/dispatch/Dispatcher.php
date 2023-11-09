@@ -2,11 +2,15 @@
 
 namespace iutnc\deefy\dispatch;
 
+use iutnc\deefy\action\AbonnementAction;
 use iutnc\deefy\action\ActionSelectTouite;
+use iutnc\deefy\action\AddTagAction;
 use iutnc\deefy\action\AddTouiteAction;
 use iutnc\deefy\action\DeconnexionAction;
+use iutnc\deefy\action\DesabonnementAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
+use iutnc\deefy\action\SupTagAction;
 use iutnc\deefy\initialisation\Initialisation;
 
 
@@ -17,6 +21,9 @@ class Dispatcher {
     public static string $tweets="";
     public static string $selectTouite="";
     public static string $selectAuteur="";
+    public static string $refus = "";
+    public static string $accept = "";
+
     
     
     public function __construct() {
@@ -47,7 +54,22 @@ class Dispatcher {
             case "liste-auteur":
                 //Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
-                break;                
+                break;
+            case "user-sub":
+                Dispatcher::$html = (new AbonnementAction())->execute();
+                break;
+            case "user-unsub":
+                Dispatcher::$html = (new DesabonnementAction())->execute();
+                break;
+            case "user":
+                Dispatcher::$html = include "modele/user.php";
+                break;
+            case "user-addtag":
+                Dispatcher::$html = (new AddTagAction())->execute();
+                break;
+            case "user-suptag":
+                Dispatcher::$html = (new SupTagAction())->execute();
+                break;
             default :
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';

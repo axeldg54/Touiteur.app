@@ -2,6 +2,7 @@
 
 namespace iutnc\deefy\action;
 
+use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\inscription\inscr;
 
 class DeconnexionAction extends Action{

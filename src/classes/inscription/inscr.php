@@ -11,6 +11,9 @@ class inscr
         $query = "select idUser, prenom, nom, password from Utilisateur where email = ?";
         $st = $pdo-> prepare($query);
         $st -> execute([$email]);
+        if ($st->rowCount() < 1) {
+            return false;
+        }
         $row = $st->fetch();
         $hash = $row['password'];
         if (password_verify($passwd2check, $hash)){

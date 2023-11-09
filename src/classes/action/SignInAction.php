@@ -1,6 +1,7 @@
 <?php
 
 namespace iutnc\deefy\action;
+use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\inscription\inscr;
 
 class SignInAction extends Action {
@@ -13,9 +14,13 @@ class SignInAction extends Action {
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];
             if (inscr::authenticate($email, $password)) {
+                Dispatcher::$refus = "";
                 $htmlContent = include 'modele/user.php';
             }
-            else $htmlContent = include 'modele/connexionRefus.php';
+            else {
+                Dispatcher::$refus = "mot de passe ou email incorrect";
+                $htmlContent = include 'modele/connexion.php';
+            };
         }
         return $htmlContent;
     }
