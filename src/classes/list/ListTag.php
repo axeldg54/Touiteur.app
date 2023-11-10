@@ -69,6 +69,9 @@ class ListTag{
                 $tag = "";
             }
         }
+        if (count($tags) === 0){
+            $tags[] = "#touiteur";
+        }
         return $tags;
     }
 }
