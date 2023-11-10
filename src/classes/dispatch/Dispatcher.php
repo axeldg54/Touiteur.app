@@ -83,7 +83,11 @@ class Dispatcher {
             case "deconnexion":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = (new DeconnexionAction())->execute();
-                break;    
+                break;
+            case "acceuil":
+                Dispatcher::$tweets = Initialisation::initialiser_Touites();
+                Dispatcher::$html = include 'modele/accueil.php';
+                break;
             default :
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';

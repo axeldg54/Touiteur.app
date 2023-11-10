@@ -48,8 +48,9 @@ echo <<< FIN
     <div class="feed__static">
 
         <div class="feed__header">
-            <h2>Accueil</h2>
+            <h2><a href="?action=accueil" class="header-link">Accueil</a></h2>
         </div>
+
     </div>
     <!-- feed__static fin -->
     
