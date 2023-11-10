@@ -117,6 +117,12 @@ echo <<< FIN
     line-height: 1.6;
 }
 
+.header-link {
+    text-decoration: none; 
+    color: inherit; 
+    font-weight: inherit; 
+    }
+
   
    .tweetBox {
   display: flex;
