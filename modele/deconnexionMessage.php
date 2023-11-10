@@ -12,7 +12,7 @@
 
 <div class="welcome-box">
     <p>Vous vous êtes déconnecté avec succès. Vous pouvez quand même accéder à Touiteur</p>
-    <p><a href="?action=">Accueil</a></p>
+    <p><a href="?action=accueil">Accueil</a></p>
 </div>
 
 </body>
