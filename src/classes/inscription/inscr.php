@@ -3,6 +3,7 @@
 namespace iutnc\deefy\inscription;
 
 use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\list\ListTouite;
 
 class inscr
 {

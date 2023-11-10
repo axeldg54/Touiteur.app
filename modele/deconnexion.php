@@ -12,8 +12,10 @@
 <div class="container">
     <h1>Touiteur.app</h1>
     <div class="confirmation-box">
-        <h2>Voulez-vous vraiment vous déconnecter ?</h2>
-        <input type="submit" value="Oui" class="confirmation-button">
+        <form id="form" method="POST" action="index.php?action=accueil" class="login-container">
+            <h2>Voulez-vous vraiment vous déconnecter ?</h2>
+            <input type="submit" value="Oui" class="login-button">
+        </form>
     </div>
 </div>
 
