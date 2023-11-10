@@ -4,8 +4,14 @@ namespace iutnc\deefy\render;
 use iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\touite\Touite;
 
+/**
+ * Gestion affichage des touites
+ */
 class RendererTouite {
 
+    /**
+     * Declarations des attributs
+     */
     private Touite $touite;
 
     private string $valeurBouton;
@@ -14,6 +20,9 @@ class RendererTouite {
         $this->touite = $t;
     }
 
+    /**
+     * Gestion affichage en long ou compact
+     */
     public function render(int $selector = 1): string {
         if ($selector == 1) {
             return $this->compact();

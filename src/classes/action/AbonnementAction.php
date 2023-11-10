@@ -5,13 +5,18 @@ namespace iutnc\deefy\action;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\dispatch\Dispatcher;
 
-
+/**
+ * Gestion de l'Abonnement 
+ */
 class AbonnementAction extends Action {
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $possible = true;
-
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
 

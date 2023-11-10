@@ -16,8 +16,14 @@ use iutnc\deefy\action\ActionSelect;
 use iutnc\deefy\initialisation\Initialisation;
 
 
-
+/**
+ * Dispatcher
+ */
 class Dispatcher {
+
+    /**
+     * Déclarations des attributs
+     */
     private string $action;
     private string $value;
     public static string $html= "";
@@ -30,7 +36,9 @@ class Dispatcher {
     private int $idTouite;
 
 
-    
+    /**
+     * Constructeur du dispatcher initialise les query_string 
+     */
     public function __construct() {
         if (isset($_GET['action'])) $this->action = $_GET['action'];
         else $this->action = '';
@@ -44,73 +52,79 @@ class Dispatcher {
     }
 
 
+
+    /**
+     * Fonction qui va lancer les actions en fonction de la valeur du query string d'action
+     */
     public function run() {
         // Initialisation des listes select
         Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();
         Dispatcher::$selectAuteur = Initialisation::initialiserSelectAuteur();  
         Dispatcher::$selectTag = Initialisation::initialiserSelectTag();
         switch ($this->action) {
-            case "sign-in" :
+            case "sign-in" :  // Cas s'inscrire
                 Dispatcher::$html = (new SignInAction)->execute();               
                 break;
-            case "register" :
+            case "register" : // Cas se connecter
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = (new AddUserAction)->execute();             
                 break;
-            case "add-touite" :
+            case "add-touite" : // Cas ajouter un touite
                 Dispatcher::$html = (new AddTouiteAction())->execute();
                 break;
-            case "liste-touite":
+            case "liste-touite": // Cas action click sur un touite
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
-            case "liste-auteur":
+            case "liste-auteur":// Cas action click sur un auteur
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
-            case "user-sub":
+            case "user-sub": // Cas suppression utilisateur suivi
                 Dispatcher::$html = (new AbonnementAction())->execute();
                 break;
-            case "sub-accueil":
+            case "sub-accueil": // Cas abonnement utilisateur suivi
                 Dispatcher::$html= (new AbonnementAccueilAction($this->idTouite))->execute();
                 break;
-            case "user-unsub":
+            case "user-unsub":  // Cas suppression d'un utilisateur suivi
                 Dispatcher::$html = (new DesabonnementAction())->execute();
                 break;
             case "user":
                 Dispatcher::$html = include "modele/user.php";
                 break;
-            case "user-addtag":
+            case "user-addtag": // Cas ajout d'un tag depuis un touite
                 Dispatcher::$html = (new AddTagAction())->execute();
                 break;
-            case "addtag-accueil":
+            case "addtag-accueil": // Cas ajout un tag
                 Dispatcher::$html = (new AddTagAccueilAction($this->idTouite))->execute();
                 break;
-            case "user-suptag":
+            case "user-suptag": // Cas suppression d'un tag
                 Dispatcher::$html = (new SupTagAction())->execute();
                 break;
-            case "liste-tag":
+            case "liste-tag": // Cas action click sur un tag
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where tag.idtag=? "))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
-            case "deconnexion":
+            case "deconnexion": // Cas pour la confirmation de la déconnexion
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html =(new DeconnexionAction())->execute();
                 break;
-            case "accueil":
+            case "accueil": // Cas pour l'accueil
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
-            default :
+            default : // Cas de base s'il il n'y a pas d'action
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
         };
-        
         $this->renderPage();
     }
 
 
+    /**
+     * Affichage de la page html
+     */
     private function renderPage() : void {
         echo Dispatcher::$html;
     }

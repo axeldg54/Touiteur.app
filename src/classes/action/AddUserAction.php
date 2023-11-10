@@ -5,8 +5,15 @@ use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\exception\AuthException;
 use iutnc\deefy\inscription\inscr;
 
+/**
+ * Gestion d'un ajout d'un utilisateur
+ */
 class AddUserAction extends Action {
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
         $htmlContent = '';
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

@@ -4,21 +4,34 @@ namespace iutnc\deefy\action;
 
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\dispatch\Dispatcher;
-use iutnc\deefy\touite\Touite;
 
+/**
+ * Gestion abonnement 
+ */
 class AbonnementAccueilAction extends Action{
+
+    /**
+     * Déclarations des attributs
+     */
     private string $idTouite;
 
+    /**
+     * Constructeur initialise la valeur de l'idTouite récupérer via l'URL
+     */
     public function __construct($id)
     {
         $this->idTouite = $id;
     }
 
+
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $possible = true;
-
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
 
@@ -52,6 +65,6 @@ class AbonnementAccueilAction extends Action{
             }
         }
         return include "modele/user.php";
-        }
+    }
 
 }

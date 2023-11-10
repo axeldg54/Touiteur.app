@@ -4,22 +4,24 @@ namespace iutnc\deefy\action;
 
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\dispatch\Dispatcher;
-use iutnc\deefy\image\Image;
-use iutnc\deefy\initialisation\Initialisation;
-use iutnc\deefy\list\ListTouite;
-use iutnc\deefy\tag\Tag;
-use iutnc\deefy\touite\Touite;
 
+
+/**
+ * Gestion du désabonnement 
+ */
 class DesabonnementAction extends Action {
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $possible = true;
 
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
-
-            // get id avec email
+            
             $email= $_POST['email2'];
             $query = "select idUser from utilisateur where email = ?";
             $st = $pdo->prepare($query);

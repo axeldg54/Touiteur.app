@@ -44,6 +44,9 @@ class Touite
     }
 
 
+    /**
+     * Getter des attributs de la classe Touite
+     */
     public function __get(string $attr) : mixed{
         if(!property_exists($this, $attr)){
             throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
@@ -53,15 +56,15 @@ class Touite
         }
     }
 
-    public function addTag(Tag $t) {
-        array_push($this->tags, $t);
-    }
-
+   
     public function getTags() : array {
         return $this->tags;
     }
 
 
+    /**
+     * Récupère un touite dans la base de donnée
+     */
     public static function recupererTouite(int $nb) : Touite{
         $db = ConnectionFactory::makeConnection();               
         
@@ -86,7 +89,9 @@ class Touite
         
     }
 
-
+    /**
+     * Insertion d'un touite dans la base de donnée
+     */
     public static function insertTuite($idImage) : int {
         // connexion bd
         $pdo = ConnectionFactory::makeConnection();

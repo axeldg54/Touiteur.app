@@ -5,16 +5,29 @@ namespace iutnc\deefy\image;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\exception\InvalidPropertyNameException;
 
+/**
+ * Classe qui représente une image
+ */
 class Image
-{
+{   
+    /**
+     * Déclarations des attribut
+     */
     private string $description;
     private string $chemin;
 
+    /**
+     * Initialise le chemin et la description de l'image
+     */
     public function __construct(string $d, string $c){
         $this->description = $d;
         $this->chemin = $c;
     }
 
+
+    /**
+     * Getter des attributs d'image
+     */
     public function __get(string $attr) : mixed{
         if(!property_exists($this, $attr)){
             throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
@@ -24,6 +37,11 @@ class Image
         }
     }
 
+
+    /**
+     * Insertion d'une image dans la base de donnée
+     * @return int l'id de l'image
+     */
     public static function insertImage() : int {
         // connexion bd
         $pdo = ConnectionFactory::makeConnection();

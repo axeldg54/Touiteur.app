@@ -2,14 +2,28 @@
 declare(strict_types=1);
 namespace iutnc\deefy\db;
 use \PDO;
+
+/**
+ * Gestion de la connexion à la base de donnée
+ */
 class ConnectionFactory {
+
+    /**
+     * Déclarations des attributs
+     */
     private static $tconfig;
     private static $pdo;
 
+    /**
+     * Ajoute le fichier de configuration à la base de donnée
+     */
     public static function setConfig($file) {
         static::$tconfig = parse_ini_file($file);
     }
 
+    /**
+     * Réalise la connection à la base de donnée grâce au fichier de config
+     */
     public static function makeConnection() {
         if (!isset(static::$pdo)) {
             $driver = static::$tconfig['driver'];

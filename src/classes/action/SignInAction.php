@@ -4,8 +4,15 @@ namespace iutnc\deefy\action;
 use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\inscription\inscr;
 
+/**
+ * Gestion de l'incription d'un utilisateur
+ */
 class SignInAction extends Action {
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
         $htmlContent = '';
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -17,7 +24,7 @@ class SignInAction extends Action {
                 Dispatcher::$refus = "";
                 $htmlContent = include 'modele/user.php';
             }
-            else {
+            else { // Si un des identifiants est incorrecte
                 Dispatcher::$refus = "mot de passe ou email incorrect";
                 $htmlContent = include 'modele/connexion.php';
             };

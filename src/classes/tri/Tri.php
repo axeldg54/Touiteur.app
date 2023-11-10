@@ -7,7 +7,7 @@ use \iutnc\deefy\list\ListTouite;
 
 class Tri{
 
-
+    
     public static function sort(Touite $a, Touite $b){
         if($a->__get("date") < $b->__get("date")){
             return 1;

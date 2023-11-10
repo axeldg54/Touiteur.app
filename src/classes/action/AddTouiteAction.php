@@ -10,12 +10,19 @@ use iutnc\deefy\image\Image;
 use iutnc\deefy\initialisation\Initialisation;
 use iutnc\deefy\list\ListTouite;
 use iutnc\deefy\touite\Touite;
-use iutnc\deefy\inscription\inscr;
 
+/**
+ * Gestion ajout d'un touite
+ */
 class AddTouiteAction extends Action
 {
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
+        // Véirifie si l'user existe
         if ($_SESSION['user']['id'] >= 0) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // insertion de l'image
@@ -30,7 +37,7 @@ class AddTouiteAction extends Action
             $lt = ListTouite::recupererListeTouites(3);
             Dispatcher::$tweets = Initialisation::initialiser_Touites();
             return include 'modele/accueil.php';
-        } else{
+        } else{ // Si pas connecté envoie à la page inscription
             return include 'modele/inscription.php';
         }
     }

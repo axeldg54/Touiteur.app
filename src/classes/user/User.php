@@ -7,10 +7,16 @@ namespace iutnc\deefy\user;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\exception\InvalidPropertyNameException;
 use PDO;
-use Stringable;
 
+
+/**
+ * Représente un User
+ */
 class User{
 
+    /**
+     * Déclaration des attributs
+     */
     private string $nom;
     private string $prenom;
     private string $email;
@@ -28,15 +34,10 @@ class User{
         $this->email = $email;
     }
 
-    public function __get(string $attr) : mixed{
-        if(!property_exists($this, $attr)){
-            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
-        }
-        else{
-            return $this->$attr;
-        }
-    }
-
+    
+    /**
+     * Récupère les abonnés de l'utilisateur connecté
+     */
     public static function getAbonnement() : string {
         $html = '';
         $pdo = ConnectionFactory::makeConnection();
@@ -69,6 +70,9 @@ class User{
         return $html;
     }
 
+    /**
+     * Récupère un abonnement
+     */
     public static function getAbonne() : string {
         $html = '';
         $pdo = ConnectionFactory::makeConnection();

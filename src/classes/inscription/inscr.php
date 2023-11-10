@@ -5,8 +5,14 @@ namespace iutnc\deefy\inscription;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\list\ListTouite;
 
+/**
+ * Classe représentant l'inscription
+ */
 class inscr
-{
+{   
+    /**
+     * Véirification lors de l'autentification
+     */
     public static function authenticate(string $email, string $passwd2check): bool{
         $pdo = ConnectionFactory::makeConnection();
         $query = "select idUser, prenom, nom, password from Utilisateur where email = ?";
@@ -23,6 +29,10 @@ class inscr
         return (password_verify($passwd2check, $hash));
     }
 
+
+    /**
+     * Méthode qui permet de s'enregistrer 
+     */
     public static function register(string $nom, string $prenom, string $email, string $pass, int $idimage): bool {
         $pdo = ConnectionFactory::makeConnection();
         $hash = password_hash($pass, PASSWORD_DEFAULT, ['cost'=> 12]);
@@ -48,6 +58,9 @@ class inscr
         return $mdp;
     }
 
+    /**
+     * Vérifie que le mot de passe est assez sécurisé ou non
+     */
     private static function checkPasswordStrength(string $pass, int $minimumLength): bool {
         $length = (strlen($pass) > $minimumLength); // longueur minimale
         $digit = preg_match("#[\d]#", $pass); // au moins un digit
@@ -58,6 +71,9 @@ class inscr
         else return true;
     }
 
+    /**
+     * Gestion de la déconnexion
+     */
     public static function deconnexion() : bool{
         $pdo = ConnectionFactory::makeConnection();
         $query = "select count(idUser) as compteur from Utilisateur where idUser = ?";

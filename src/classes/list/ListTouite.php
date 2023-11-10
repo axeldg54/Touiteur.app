@@ -3,16 +3,14 @@
 declare(strict_types=1);
 namespace iutnc\deefy\list;
 
-use iutnc\deefy\initialisation\Initialisation;
+
 use \iutnc\deefy\Touite\Touite;
 use \iutnc\deefy\exception\InvalidPropertyNameException;
 use \iutnc\deefy\tri\Tri;
-use \iutnc\deefy\tag\Tag;
-use \iutnc\deefy\image\Image;
 use iutnc\deefy\render\Renderer;
 use iutnc\deefy\render\RendererTouite;
 use iutnc\deefy\db\ConnectionFactory;
-use \DateTime;
+
 
 
 
@@ -50,34 +48,29 @@ class ListTouite{
     }
 
 
+    /**
+     * Tri la liste de touite
+     */
     public function trierTouites() : void{
         $this->tabTouites = Tri::tri($this->tabTouites);
     }
 
-   
-    public function __get(string $attr) : mixed{
-        if(!property_exists($this, $attr)){
-            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
-        }
-        else{
-            return $this->$attr;
-        }
-    }
+    
+    
 
-
+    /**
+     * Affiche la liste des touites
+     */
     public function displayListeTouites() : string{
         $html = "";
         foreach($this->tabTouites as $key => $val){
             $render = Renderer::COMPACT;
 
             // Vérifier si $_SESSION['user'] est défini et si la clé "id" existe
-
-            
                 if(ListTouite::$ISSELECT or $_SESSION['user']["id"] !== -1){
                     $render = Renderer::LONG;
                     ListTouite::$ISSELECT = false;
                 }
-
 
             $html .= (new RendererTouite($val))->render($render);
         }
@@ -85,7 +78,10 @@ class ListTouite{
     }
 
 
-
+    /**
+     * Récupère la liste des touites
+     * @return ListTouite une liste de touite
+     */
     public static function recupererListeTouites(int $nbTouite) : ListTouite{
         $nb = 0;
         $lt = new ListTouite();
@@ -97,6 +93,9 @@ class ListTouite{
     }
 
 
+    /**
+     * Initialise la liste des touites dans la liste déroulante
+     */
     public static function selectListeTouite(int $nbTouite){
 
         $db = ConnectionFactory::makeConnection();               

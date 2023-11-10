@@ -3,15 +3,22 @@
 namespace iutnc\deefy\list;
 
 use iutnc\deefy\db\ConnectionFactory;
-use iutnc\deefy\image\Image;
-use iutnc\deefy\tag\Tag;
 use iutnc\deefy\touite\Touite;
 use iutnc\deefy\tri\Tri;
 
+/**
+ * Représente la liste des touites que l'utilisateur suit
+ */
 class ListTouiteSuivi{
 
+    /**
+     * Déclarations des attributs
+     */
     protected array $tabSuivi;
 
+    /**
+     * Initialise la liste des touites
+     */
     public function __construct(){
         $this->tabSuivi =array();
     }
@@ -25,10 +32,16 @@ class ListTouiteSuivi{
         $this->trierTouites();
     }
 
+    /**
+     * Tri la liste des touites suivis
+     */
     public function trierTouites() : void{
         $this->tabSuivi = Tri::tri($this->tabSuivi);
     }
 
+    /**
+     * Récupère les touites suivis par l'utilisateur
+     */
     public function recupererListeUtilisateurSuivi() : array{
         $db = ConnectionFactory::makeConnection();
         $st = $db->prepare("select idUser2 from suivre where idUser= ?");
@@ -39,20 +52,5 @@ class ListTouiteSuivi{
         return $this->tabSuivi;
     }
 
-    public function recupererListeTouiteSuivi() : ListTouiteSuivi{
-        $lt = new ListTouiteSuivi();
-        $this->tabSuivi = $this->recupererListeUtilisateurSuivi();
-        $db = ConnectionFactory::makeConnection();
-        $st = $db->prepare("select touite.idTouite, texte,touite.idImage from touite 
-                            inner join image on touite.idImage=image.idImage 
-                            inner join publier on touite.idTouite=publier.idTouite where publier.idUser = ?");
-        foreach ($this->tabSuivi as $value){
-            $st->execute([$value]);
-            while($row = $st->fetchAll()){
-                $lt->addTouite($row);
-            }
-        }
-        return $lt;
-    }
-
+    
 }

@@ -4,25 +4,32 @@ namespace iutnc\deefy\action;
 
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\dispatch\Dispatcher;
-use iutnc\deefy\image\Image;
-use iutnc\deefy\initialisation\Initialisation;
-use iutnc\deefy\list\ListTouite;
-use iutnc\deefy\tag\Tag;
-use iutnc\deefy\touite\Touite;
 
+/**
+ * Gestion de l'ajout de tag
+ */
 class AddTagAccueilAction extends Action {
 
+    /**
+     * Déclaration des attributs
+     */
     private int $idTouite;
 
+    /**
+     * Initialise l id du touite que l'on récupère dans l'url
+     */
     public function __construct($id)
     {
         $this->idTouite = $id;
     }
 
+    /**
+     * Traite l'action enclenché par l'utilisateur 
+     * @return string contenant le code html qui traite l'action
+     */
     public function execute(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $possible = true;
-
             // Connexion à la base de données
             $pdo = ConnectionFactory::makeConnection();
 
@@ -56,10 +63,10 @@ class AddTagAccueilAction extends Action {
                 }
             }
 
-            if (!$possible) {
+            if (!$possible) {  // Si pas connecté
                 Dispatcher::$accept = "";
                 return include "modele/user.php";
-            } else {
+            } else { // Si connecté
                 Dispatcher::$accept = "Vous êtes maintenant abonné aux tags";
                 Dispatcher::$refus = "";
             }

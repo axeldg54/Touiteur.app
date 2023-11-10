@@ -6,7 +6,13 @@ use iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\list\ListTag;
 
+/**
+ * Représente un Tag
+ */
 class Tag {
+    /**
+     * Déclarationsd des attributs
+     */
     private string $libelle;
     private string $description;
 
@@ -15,15 +21,10 @@ class Tag {
         $this->libelle = $l;
     }
 
-    public function __get(string $attr) : mixed{
-        if(!property_exists($this, $attr)){
-            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
-        }
-        else{
-            return $this->$attr;
-        }
-    }
-
+    
+    /**
+     * Récupère les tags en fonction du touite
+     */
     public static function recupererTags(int $idTouite) : array{
         $db = ConnectionFactory::makeConnection();
         $query = "select * from contient c inner join tag t on c.idtag = t.idtag where idTouite like ?";
@@ -38,12 +39,12 @@ class Tag {
                 $i++;
             }
         }
-        echo "<br>";
-        //echo "<pre>";
-        //var_dump($tab);
         return $tab;
     }
 
+    /**
+     * Insertion d'un tag dans la base de donnée
+     */
     public static function insertTag($idTouite) {
         // connexion bd
         $pdo = ConnectionFactory::makeConnection();

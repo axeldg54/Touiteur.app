@@ -5,14 +5,8 @@ namespace iutnc\deefy\list;
 
 use \iutnc\deefy\Touite\Touite;
 use \iutnc\deefy\exception\InvalidPropertyNameException;
-use \iutnc\deefy\tri\Tri;
-use \iutnc\deefy\tag\Tag;
-use \iutnc\deefy\image\Image;
-use iutnc\deefy\render\Renderer;
-use iutnc\deefy\render\RendererTouite;
 use iutnc\deefy\db\ConnectionFactory;
-use \DateTime;
-use \iutnc\deefy\user\User;
+
 
 
 
@@ -20,16 +14,9 @@ use \iutnc\deefy\user\User;
 class ListTag{
 
   
-    public function __get(string $attr) : mixed{
-        if(!property_exists($this, $attr)){
-            throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
-        }
-        else{
-            return $this->$attr;
-        }
-    }
-
-
+    /**
+     * Initialise la liste de select de tag
+     */
     public static function selectListeTouite(int $nbTag){
         $db = ConnectionFactory::makeConnection();               
         $html = <<< Fin
@@ -55,6 +42,9 @@ class ListTag{
     }
 
 
+    /**
+     * Récupère les tags dans le touite fonctionnalité 11
+     */
     public static function recupererTagsDansTouite(string $contenu) : array{
         $lettre = "";
         $tag = "";
