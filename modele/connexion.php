@@ -30,9 +30,7 @@ echo <<<FIN
         <div class="footer">
             <small>Vous n'êtes pas membre ? <a href="?action=register">Inscrivez-vous maintenant</a></small>
         </div>
-        <?php if (!empty($refus)): ?>
-            <p class="msgRefus"><?= htmlspecialchars($refus) ?></p>
-        <?php endif; ?>
+        <p class="msgRefus">$refus</p>
     </form>
 </div>
 

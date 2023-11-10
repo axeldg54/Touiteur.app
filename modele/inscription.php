@@ -36,9 +36,7 @@ echo <<<FIN
         <div class="footer">
             <small>Déjà membre ? <a href="?action=sign-in">Connectez-vous</a></small>
         </div>
-        <?php if (!empty($refus)): ?>
-            <p class="msgRefus"><?= htmlspecialchars($refus) ?></p>
-        <?php endif; ?>
+            <p class="msgRefus">$refus</p>
     </form>
 </div>
 

@@ -64,19 +64,25 @@ class ListTouite{
         }
     }
 
-    
-    public function displayListeTouites() : string{ 
+
+    public function displayListeTouites() : string{
         $html = "";
         foreach($this->tabTouites as $key => $val){
             $render = Renderer::COMPACT;
-            if(ListTouite::$ISSELECT or $_SESSION['user']["id"] !== -1){
-                $render = Renderer::LONG;
-                ListTouite::$ISSELECT = false;
+
+            // Vérifier si $_SESSION['user'] est défini et si la clé "id" existe
+            if(isset($_SESSION['user']) && isset($_SESSION['user']["id"])) {
+                if(ListTouite::$ISSELECT or $_SESSION['user']["id"] !== -1){
+                    $render = Renderer::LONG;
+                    ListTouite::$ISSELECT = false;
+                }
             }
+
             $html .= (new RendererTouite($val))->render($render);
         }
         return $html;
     }
+
 
 
     public static function recupererListeTouites(int $nbTouite) : ListTouite{
