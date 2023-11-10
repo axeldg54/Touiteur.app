@@ -8,6 +8,8 @@ class RendererTouite {
 
     private Touite $touite;
 
+    private string $valeurBouton;
+
     public function __construct(Touite $t) {
         $this->touite = $t;
     }

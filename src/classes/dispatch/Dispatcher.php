@@ -2,6 +2,7 @@
 
 namespace iutnc\deefy\dispatch;
 
+use iutnc\deefy\action\AbonnementAccueilAction;
 use iutnc\deefy\action\AbonnementAction;
 use iutnc\deefy\action\AddTagAction;
 use iutnc\deefy\action\AddTouiteAction;
@@ -64,6 +65,8 @@ class Dispatcher {
             case "user-sub":
                 Dispatcher::$html = (new AbonnementAction())->execute();
                 break;
+            case "subAccueil":
+                Dispatcher::$html= (new AbonnementAccueilAction())->execute();
             case "user-unsub":
                 Dispatcher::$html = (new DesabonnementAction())->execute();
                 break;
