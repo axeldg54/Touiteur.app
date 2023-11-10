@@ -29,7 +29,7 @@ class AddUserAction extends Action {
             try {
                 if (inscr::register($nom,$prenom,$email, $password, 0)) {
                     Dispatcher::$refus = "";
-                    $htmlContent = include 'modele/accueil.php';
+                    $htmlContent = include 'modele/sign-in.php';
                 } else {
                     Dispatcher::$refus = "mot de passe non sécurisé ou email déjà utilisée";
                     $htmlContent = include 'modele/inscription.php';
