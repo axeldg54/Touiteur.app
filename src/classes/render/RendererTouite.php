@@ -8,6 +8,8 @@ class RendererTouite {
 
     private Touite $touite;
 
+    private string $valeurBouton;
+
     public function __construct(Touite $t) {
         $this->touite = $t;
     }   
@@ -57,7 +59,7 @@ class RendererTouite {
                 <p>". $this->touite->__get("texte") ."</p>
             </div>
             <div>
-                <button type='button'>Suivre</button>
+                <a href='?action=subAccueil' class='btn-abonnement'>Suivre</a>
                 <button type='button'>Suivre Tags</button>
             </div>
         </div>
