@@ -45,28 +45,28 @@ class RendererTouite {
         foreach ($this->touite->getTags() as $tag) {
             $t .= $tag->__get("libelle") . ' ';
         }
-        $idTouite = $this->touite->__get("id"); // Assuming this retrieves the touite's ID correctly
+        $idTouite = $this->touite->id; // Assuming this retrieves the touite's ID correctly
 
         return "<div class='post__body'>
         <div class='post__header'>
             <div class='post__headerText'>
                 <h3>
-                    " . $this->touite->__get("auteur") . "
+                    " . $this->touite->auteur . "
                     <span class='post__headerSpecial'>
                     <span class='material-icons post__badge'> verified </span>@user</span>
                 </h3>
             </div>
             <div class='post__headerDescription'>
-                <p>" . $this->touite->__get("texte") . "</p>
+                <p>" . $this->touite->texte . "</p>
             </div>
         </div>
-        <img src='" . $this->touite->__get("image")->__get("chemin") . "' alt='' class='touite-image'/>
+        <img src='" . $this->touite->image->chemin . "' alt='' class='touite-image'/>
         <div class='touite-interaction'>
             <div class='touite-likes-tags'>
-                <p class='touite-likes'>Likes: " . $this->touite->__get("score") . "</p>
+                <p class='touite-likes'>Likes: " . $this->touite->score . "</p>
                 <p class='touite-tags'>Tags: " . $t . "</p>
             </div>
-            <p class='touite-date'>" . $this->touite->__get("date")->format("F j, Y, g:i a") . "</p>
+            <p class='touite-date'>" . $this->touite->date->format("F j, Y, g:i a") . "</p>
         </div>
         <form id='form-follow' method='POST' action='index.php?action=sub-accueil&idTouite={$idTouite}' class='follow'>
             <input type='submit' value='Suivre' class='follow-btn'>

@@ -14,7 +14,7 @@ primary key(idTag)
 
 create table Image (
 idImage int(10) not null,
-chemin varchar(50),
+chemin varchar(200),
 description varchar(235),
 primary key(idImage)
 );
