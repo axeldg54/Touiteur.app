@@ -102,7 +102,6 @@ echo <<< FIN
     
  
 
-    
     <style>
         
 body {
@@ -119,21 +118,18 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  align-items: stretch; 
-  }
-
+  padding: 20px;
+}
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* This will push the content to the top and bottom of the container */
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   margin-bottom: 20px;
-  flex: 1; /* This will make the containers flexible in terms of width */
-  min-height: 250px; /* Set a minimum height for all containers */
+  padding: 20px;
+  flex: 0 1 300px;
+  padding: 15px;
+
 }
 
 .user-info, .actions, .form-container {
