@@ -62,7 +62,7 @@ class Dispatcher {
             case "liste-touite":
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
-                break;   
+                break;
             case "liste-auteur":
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
@@ -92,7 +92,7 @@ class Dispatcher {
                 break;
             case "deconnexion":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
-                Dispatcher::$html = (new DeconnexionAction())->execute();
+                Dispatcher::$html =(new DeconnexionAction())->execute();
                 break;
             case "accueil":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
