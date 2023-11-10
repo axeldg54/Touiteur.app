@@ -71,10 +71,13 @@ class ListTouite{
             $render = Renderer::COMPACT;
 
             // Vérifier si $_SESSION['user'] est défini et si la clé "id" existe
+
+            
                 if(ListTouite::$ISSELECT or $_SESSION['user']["id"] !== -1){
                     $render = Renderer::LONG;
                     ListTouite::$ISSELECT = false;
-            }
+                }
+
 
             $html .= (new RendererTouite($val))->render($render);
         }
