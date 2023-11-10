@@ -26,6 +26,7 @@ class Dispatcher {
     public static string $refus = "";
     public static string $accept = "";
     public static string $selectTag="";
+    private int $idTouite;
 
 
     
@@ -34,6 +35,10 @@ class Dispatcher {
         else $this->action = '';
         if (isset($_GET["value"])) $this->value = $_GET["value"];
         else $this->value = '';
+        if (isset($_GET["idTouite"])) {
+            $this->idTouite = $_GET["idTouite"];
+        }
+        else $this->idTouite = 0;
         
     }
 
@@ -57,7 +62,7 @@ class Dispatcher {
             case "liste-touite":
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
-                break;   
+                break;
             case "liste-auteur":
                 Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
@@ -65,8 +70,10 @@ class Dispatcher {
             case "user-sub":
                 Dispatcher::$html = (new AbonnementAction())->execute();
                 break;
-            case "subAccueil":
-                Dispatcher::$html= (new AbonnementAccueilAction())->execute();
+            case "sub-accueil":
+                Dispatcher::$tweets = Initialisation::initialiser_Touites();
+                Dispatcher::$html= (new AbonnementAccueilAction($this->idTouite))->execute();
+                break;
             case "user-unsub":
                 Dispatcher::$html = (new DesabonnementAction())->execute();
                 break;
@@ -85,7 +92,7 @@ class Dispatcher {
                 break;
             case "deconnexion":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
-                Dispatcher::$html = (new DeconnexionAction())->execute();
+                Dispatcher::$html =(new DeconnexionAction())->execute();
                 break;
             case "accueil":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();

@@ -43,8 +43,10 @@ class RendererTouite {
     private function long(): string {
         $t = "";
         foreach ($this->touite->getTags() as $tag) {
-            $t = $t . $tag->__get("libelle") . ' ';
+            $t .= $tag->__get("libelle") . ' ';
         }
+        $idTouite = $this->touite->__get("id"); // Assuming this retrieves the touite's ID correctly
+
         return "<div class='post__body'>
         <div class='post__header'>
             <div class='post__headerText'>
@@ -55,24 +57,23 @@ class RendererTouite {
                 </h3>
             </div>
             <div class='post__headerDescription'>
-                <p>". $this->touite->__get("texte") ."</p>
+                <p>" . $this->touite->__get("texte") . "</p>
             </div>
         </div>
-        <img
-            src='".$this->touite->__get("image")->__get("chemin")."'
-            alt='' class='touite-image'/>
+        <img src='" . $this->touite->__get("image")->__get("chemin") . "' alt='' class='touite-image'/>
         <div class='touite-interaction'>
             <div class='touite-likes-tags'>
-                <p class='touite-likes'>Likes: ". $this->touite->__get("score") ."</p>
-                <p class='touite-tags'>Tags: ". $t ."</p>
+                <p class='touite-likes'>Likes: " . $this->touite->__get("score") . "</p>
+                <p class='touite-tags'>Tags: " . $t . "</p>
             </div>
-            <p class='touite-date'>". $this->touite->__get("date")->format("F j, Y, g:i a") ."</p>
+            <p class='touite-date'>" . $this->touite->__get("date")->format("F j, Y, g:i a") . "</p>
         </div>
-      <div class='follow'>
-        <input type='button' value='Suivre' class='follow-btn'>
-        <input type='button' value='Suivre Tags' class='follow-tags-btn'>
-       </div>
-
+        <form id='form-follow' method='POST' action='index.php?action=sub-accueil&idTouite={$idTouite}' class='follow'>
+            <input type='submit' value='Suivre' class='follow-btn'>
+        </form>
+        <form id='form-follow' method='POST' action='index.php?action=addtag-accueil&idTouite={$idTouite}' class='follow'>
+            <input type='submit' value='Suivre Tags' class='follow-tags-btn'>
+        </form>
     </div>
 <style>
       .touite-interaction {
@@ -116,26 +117,26 @@ class RendererTouite {
     background: #f4f4f4;
     border-top: 1px solid #e1e8ed;
 }
-.follow input[type='button'] {
-      padding: 8px 16px; 
-      margin: 0 5px;
-      background-color: #483D8B;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      transition: background-color 0.3s, box-shadow 0.3s;
-  }
+.follow input[type='submit'] {
+    padding: 8px 16px; 
+    margin: 0 5px;
+    background-color: #483D8B;
+    color: white;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 30%;
+}
 
-  .follow input[type='button']:hover {
-      background-color: #D8BFD8;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  }
-
+  .follow input[type='submit']:hover {
+    background-color: #D8BFD8;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
 .touite-interaction .follow {
     text-align: right;
     padding: 0;
