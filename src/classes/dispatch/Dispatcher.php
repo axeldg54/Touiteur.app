@@ -4,6 +4,7 @@ namespace iutnc\deefy\dispatch;
 
 use iutnc\deefy\action\AbonnementAccueilAction;
 use iutnc\deefy\action\AbonnementAction;
+use iutnc\deefy\action\AddTagAccueilAction;
 use iutnc\deefy\action\AddTagAction;
 use iutnc\deefy\action\AddTouiteAction;
 use iutnc\deefy\action\DeconnexionAction;
@@ -71,7 +72,6 @@ class Dispatcher {
                 Dispatcher::$html = (new AbonnementAction())->execute();
                 break;
             case "sub-accueil":
-                Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html= (new AbonnementAccueilAction($this->idTouite))->execute();
                 break;
             case "user-unsub":
@@ -82,6 +82,9 @@ class Dispatcher {
                 break;
             case "user-addtag":
                 Dispatcher::$html = (new AddTagAction())->execute();
+                break;
+            case "addtag-accueil":
+                Dispatcher::$html = (new AddTagAccueilAction($this->idTouite))->execute();
                 break;
             case "user-suptag":
                 Dispatcher::$html = (new SupTagAction())->execute();

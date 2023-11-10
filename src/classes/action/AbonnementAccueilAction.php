@@ -19,7 +19,6 @@ class AbonnementAccueilAction extends Action{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $possible = true;
 
-            echo $this->idTouite;
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
 

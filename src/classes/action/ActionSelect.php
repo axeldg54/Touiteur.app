@@ -51,7 +51,7 @@ class ActionSelect extends Action{
         $tabTags = Tag::recupererTags($row[$nb]["idTouite"]);
 
         // Récupère le touite
-        $t = new Touite($row[$nb]["texte"], $row[$nb]["nom"],
+        $t = new Touite($row[$nb]["idTouite"],$row[$nb]["texte"], $row[$nb]["nom"],
             new Image($row[$nb]["imgd"], "img/what.png"),
             $row[$nb]["nblike"], new DateTime($row[$nb]["date"]), $tabTags);                    
         
