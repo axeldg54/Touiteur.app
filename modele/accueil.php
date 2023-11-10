@@ -25,13 +25,10 @@ echo <<< FIN
 </head>
 <body>
 <div class="sidebar">
-
-    <h1>
-        <center>Touite</center>
+   <h1 class="title-container">
+        <span>Touiteur</span>
+        <img src="img/plume.svg" alt="Logo" class="logo">
     </h1>
-
-    <i class="fab fa-touiteur"></i>
-
     <!-- Déroulement de la liste des touites -->
     $selectTouite
 
@@ -45,6 +42,7 @@ echo <<< FIN
 
 
 <!-- feed debut -->
+<div class="container">
 <div class="feed">
 
     <div class="feed__static">
@@ -52,35 +50,34 @@ echo <<< FIN
         <div class="feed__header">
             <h2>Accueil</h2>
         </div>
-
-        <!-- touitebox debut -->
+    </div>
+    <!-- feed__static fin -->
+    
+ <!-- touitebox debut -->
         <div class="tweetBox">
             <!--<a href="?action=add-touite" class="btn-touiter">Touiter</a>-->
-
+            
             <form id="form" method="POST" action="index.php?action=add-touite" enctype="multipart/form-data">
               <div class="tweetbox__input">
                 <img src ="img/user.png" alt=""/>
-                  <input type="text" id="contenu" name="contenu" value="ceci est un tweet #cool" placeholder="Quoi de neuf ?" required>
+                   <textarea id="contenu" name="contenu" placeholder="Quoi de neuf ?" required></textarea>
                   <input type="file" id="file" name="file">
               </div>
-                <input type="submit" value="Ajouter" class="tweetBox__tweetButton" placeholder="Touite">
+            
+                <input type="submit" value="Toutier" class="tweetBox__tweetButton" placeholder="Touite">
             </form>
 
         </div>
-    </div>
-    <!-- feed__static fin -->
-
     <!-- touite box fin -->
-
 
     <div class="posts__container">        
         $tweets
     </div>
     <!-- posts__container fin -->
-    
-
-
+   
 </div>
+</div>
+
 <!-- feed fin -->
 
     <!-- widgets debut -->
@@ -88,15 +85,7 @@ echo <<< FIN
         <div class="widgets__loginButtons">
             <a href="?action=sign-in" class="loginButton">Connexion</a>
             <a href="?action=register" class="loginButton">Inscription</a>
-        </div>
-
-        <div class="widgets__input">
-            <span class="material-icons widgets__searchIcon">search</span>
-            <input type="text" placeholder="Rechercher Touite" />
-        </div>
-
-        <div class="widgets__widgetContainer">
-            <h2>Que se passe-t-il ?</h2>
+            <a href="?action=user" class="loginButton">Profil</a>
         </div>
     </div>
     <!-- widgets fin -->
@@ -114,18 +103,40 @@ echo <<< FIN
         box-sizing: border-box;
     }
 
-    body {
-        --twitter-color: #3f4e4e;
-        --twitter-background: #e6ecf0;
+  body {
+    display: flex;
+    height: 100vh; 
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f8; 
+    color: #333;
+    line-height: 1.6;
+}
 
+  
+   .tweetBox {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: 1px solid #e6ecf0;
+}
+   
+      .post__body {
+        flex: 1;
+        padding: 10px;
+        background-color: #FFFDFF;
+         border-bottom: 1px solid #e6ecf0;
     }
 
-    .sidebarOption {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
+   .sidebarOption {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
     .sidebarOption .material-icons,
     .fa-twitter {
         padding: 20px;
@@ -138,19 +149,14 @@ echo <<< FIN
     }
 
     .sidebarOption:hover {
-        background-color: var(--twitter-background);
+        background-color: #EEFFF9;
         border-radius: 30px;
         color: var(--twitter-color);
         transition: color 100ms ease-out;
     }
 
-    .sidebarOption.active {
-        color: var(--twitter-color);
-    }
-
     .sidebar__tweet {
         width: 100%;
-        background-color: var(--twitter-color);
         border: none;
         color: white;
         font-weight: 900;
@@ -158,25 +164,23 @@ echo <<< FIN
         height: 50px;
         margin-top: 20px;
     }
-
-    body {
-        display: flex;
-        height: 100vh;
-        max-width: 1300px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 10px;
-    }
+    
+   .container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 1300px;
+    padding: 0 20px;
+}
 
     .sidebar {
-        border-right: 1px solid var(--twitter-background);
-        flex: 0.2;
-
-        min-width: 250px;
-        margin-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+    width: 250px; 
+    margin-top: 20px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: start; 
+}
 
     .fa-twitter {
         color: var(--twitter-color);
@@ -184,25 +188,30 @@ echo <<< FIN
     }
 
     .feed {
-        flex: 0.5;
-        border-right: 1px solid var(--twitter-background);
-        min-width: fit-content;
-        overflow-y: scroll;
-    }
-
+    flex: 1;
+    margin: 0 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+  
     .feed__header {
-        position: sticky;
-        top: 0;
-        background-color: white;
-        z-index: 100;
-        border: 1px solid var(--twitter-background);
-        padding: 15px 20px;
+    border-bottom: 1px solid #e6ecf0;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+    .feed__header h2 {
+      color: #444;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px; 
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
-    .feed__header h2 {
-        font-size: 20px;
-        font-weight: 800;
-    }
 
     .feed::-webkit-scrollbar {
         display: none;
@@ -219,12 +228,7 @@ echo <<< FIN
         height: 40px;
     }
 
-    .tweetBox {
-        padding-bottom: 10px;
-        border-bottom: 8px solid var(--twitter-background);
-        padding-right: 10px;
-    }
-
+ 
     .tweetBox form {
         display: flex;
         flex-direction: column;
@@ -234,26 +238,23 @@ echo <<< FIN
         display: flex;
         padding: 20px;
     }
+    
+    .tweetbox__input textarea {
+  flex: 3; 
+  margin-right: 20px; 
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd; 
+  border-radius: 4px; 
+  height: 100px;
+}
+
 
     .tweetbox__input input {
-        flex: 1;
-        margin-left: 20px;
-        font-size: 20px;
+        flex: 2;
+        font-size: 15px;
         border: none;
         outline: none;
-    }
-
-    .tweetBox__tweetButton {
-        background-color: var(--twitter-color);
-        border: none;
-        color: white;
-        font-weight: 900;
-
-        border-radius: 30px;
-        width: 80px;
-        height: 40px;
-        margin-top: 20px;
-        margin-left: auto;
     }
 
     .post__avatar img {
@@ -262,11 +263,9 @@ echo <<< FIN
     }
 
     .post {
-        display: flex;
-        align-items: flex-start;
-        border-bottom: 1px solid var(--twitter-background);
-        padding-bottom: 10px;
-    }
+padding: 20px;
+border-bottom: 1px solid #e6ecf0;
+}
 
     .post__body img {
         width: 450px;
@@ -275,10 +274,10 @@ echo <<< FIN
     }
 
     .post__footer {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
+display: flex;
+justify-content: space-between;
+font-size: 15px;
+}
 
     .post__badge {
         font-size: 14px !important;
@@ -292,30 +291,28 @@ echo <<< FIN
         color: gray;
     }
 
-    .post__headerText h3 {
-        font-size: 15px;
-        margin-bottom: 5px;
-    }
+   .post__headerText h3 {
+font-size: 15px;
+margin: 0;
+}
 
-    .post__headerDescription {
-        margin-bottom: 10px;
-        font-size: 15px;
-    }
+   .post__headerDescription {
+margin-bottom: 10px;
+font-size: 15px;
+color: #555;
+}
 
-    .post__body {
-        flex: 1;
-        padding: 10px;
-    }
-
+  
     .post__avatar {
-        padding: 20px;
-    }
+margin-right: 10px;
+}
+
 
     /* widgets */
     .widgets {
-        flex: 0.3;
-    }
-
+    width: 250px;
+    margin-top: 20px;
+}
     .widgets__input {
         display: flex;
         align-items: center;
@@ -323,27 +320,27 @@ echo <<< FIN
         padding: 10px;
         border-radius: 20px;
         margin-top: 10px;
-        margin-left: 0; /* Ajusté pour être collé à gauche */
-        align-self: flex-start; /* Ajustement pour l'alignement à gauche */
+        margin-left: 0;
+        align-self: flex-start; 
     }
 
     .widgets__input input {
         border: none;
         background-color: var(--twitter-background);
-        flex: 1; /* Permet à l'input de prendre l'espace disponible */
+        flex: 1;
     }
 
     .widgets__searchIcon {
         color: gray;
     }
 
-    .widgets__widgetContainer {
-        margin-top: 15px;
-        margin-left: 20px;
-        padding: 20px;
-        background-color: #f5f8fa;
-        border-radius: 20px;
-    }
+ .widgets__widgetContainer {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    padding: 20px;
+}
 
     .widgets__widgetContainer h2 {
         font-size: 18px;
@@ -360,92 +357,144 @@ echo <<< FIN
         color: gray;
         cursor: pointer;
     }
+    
+   a {
+    color: #5D3FD3;
+    text-decoration: none;
+}
+.sidebar h1 {
+    background-color: #5D3FD3;
+    color: #ffffff; 
+    margin-bottom: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease-in-out;
+    width: 80%;
+}
 
-    .sidebarOption {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        cursor: pointer;
-    }
-
-    .sidebarOption:hover {
-        background-color: #e8f5fe;
-    }
+.sidebar h1:hover {
+    background-color: #4a31c3;
+}
+.sidebar h1 img {
+  height: 28px;
+}
+ 
     /* styliser les boutons */
     .loginButton {
-        padding: 10px 20px;
-        margin-right: 10px; /* Espacement entre les boutons */
-        border: none;
-        color: white;
-        background-color: dimgray;
-        border-radius: 20px; /* Boutons arrondis */
-        cursor: pointer;
-        outline: none;
-    }
+    padding: 10px 20px;
+    margin-right: 10px; 
+    border: 2px solid transparent;
+    color: white;
+    background-color: #7B725B; 
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+        background-color: #E5D4A9;
+        color: #544A42;
+        margin-bottom: 10px;
+    
+}
 
-    .widgets {
-        display: flex;
-        flex-direction: column;
-        margin-left: 15px;
-    }
+.userButton, .tweetBox__tweetButton, .loginButton {
+    background-color: #5D3FD3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
 
-    /* pour ajuster la taille et l'espacement des icônes de recherche si nécessaire */
-    .widgets__searchIcon {
-        /* nos styles ici si on souhaite ajuster l'icône */
-    }
+
+.userButton:hover, .tweetBox__tweetButton:hover, .loginButton:hover {
+    background-color: #4a31c3;
+}
+
+.widgets {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end; 
+    position: sticky;
+    top: 0; 
+    padding-top: 20px;
+    height: 100vh;
+    z-index: 1000;
+}
 
     .widgets__loginButtons {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        margin-left: 1px;
-    }
-
-    .loginButton {
-        /*  CSS pour les boutons */
-    }
-
-
-    .widgets__searchIcon {
-        /*  CSS pour l'icône */
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    padding-right: 20px; 
+    z-index: 10;
+        margin-right: 80px;
+        
+}
 
     .widgets__widgetContainer {
         margin-top: 15px;
-        margin-left: 0; /* Ajusté pour être collé à gauche */
+        margin-left: 0; 
         padding: 20px;
         background-color: #f5f8fa;
         border-radius: 20px;
-        align-self: flex-start; /* Ajustement pour l'alignement à gauche */
+        align-self: flex-start;
     }
+    
+    input[type="text"], input[type="email"], input[type="file"], input[type="submit"] {
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+width: 100%;
+box-sizing: border-box;
+}
 
-    .btn-touiter {
-        padding: 30px 20px; /* Ajustez la taille selon vos besoins */
-        font-size: 1.5em; /* Ajustez la taille de la police comme vous le souhaitez */
-        background-color: darkgray; /* Choisissez une couleur de fond */
-        color: white; /* Choisissez une couleur de texte */
-        border: none;
-        border-radius: 20px; /* Ajustez pour l'arrondissement des coins */
-        cursor: pointer;
-        margin: 20px 0; /* Ajoutez un peu d'espace avant et après le bouton */
-        display: block; /* Si vous voulez que le bouton soit centré */
-        width: 35%; /* ou une certaine largeur selon votre mise en page */
-        margin-left: auto; /* Si 'display: block' est réglé, cela centrera le bouton */
-        margin-right: auto; /* Si 'display: block' est réglé, cela centrera le bouton */
-    }
+input[type="submit"] {
+background-color: #5D3FD3;
+color: white;
+cursor: pointer;
+transition: background 0.3s ease;
+}
 
-    .btn-touiter:hover {
-        background-color: midnightblue; /* Couleur lors du survol du bouton */
-    }
+input[type="submit"]:hover {
+background-color: #4a31c3;
+}
 
-    .feed__static {
-        /* Ajoutez les styles nécessaires pour la mise en page statique */
-    }
+@media (max-width: 768px) {
+.container {
+flex-direction: column;
+align-items: center;
+}
 
-    .posts__container {
-        max-height: calc(100vh - 150px); /* Ajustez la hauteur selon la hauteur de votre en-tête et bouton touiter */
-        overflow-y: auto; /* Activez le défilement pour les posts uniquement */
-    }
+.sidebar, .widgets {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.feed {
+    order: -1; 
+    width: 100%;
+}
+
+
+    .posts__container::-webkit-scrollbar {
+    display: none; 
+}
+
+.posts__container {
+    max-height: 600px; 
+    overflow-y: scroll;
+}
+
+
+   
 </style>
 FIN;
