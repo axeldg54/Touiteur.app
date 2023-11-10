@@ -402,6 +402,7 @@ margin-right: 10px;
         background-color: #E5D4A9;
         color: #544A42;
         margin-bottom: 10px;
+        width: 150px;
     
 }
 
