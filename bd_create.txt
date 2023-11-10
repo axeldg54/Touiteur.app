@@ -1,79 +1,79 @@
-create table Touite (
-idTouite int(10) not null,
+ 	create table touite (
+idtouite int(10) not null,
 texte varchar(235),
-idImage int(10),
-primary key (idTouite)
+idimage int(10),
+primary key (idtouite)
 );
 
-create table Tag (
-idTag int(10) not null,
+create table tag (
+idtag int(10) not null,
 libelle varchar(50),
 description varchar(235),
-primary key(idTag)
+primary key(idtag)
 );
 
-create table Image (
-idImage int(10) not null,
+create table image (
+idimage int(10) not null,
 chemin varchar(200),
 description varchar(235),
-primary key(idImage)
+primary key(idimage)
 );
 
-create table Utilisateur (
-idUser int(10) not null,
+create table utilisateur (
+iduser int(10) not null,
 nom varchar(50),
 prenom varchar(50),
 email varchar(50),
 password varchar(200),
-idImage int(10),
-primary key(idUser)
+idimage int(10),
+primary key(iduser)
 );
 
-create table Publier (
-idTouite int(10) not null,
-idUser int(10) not null,
+create table publier (
+idtouite int(10) not null,
+iduser int(10) not null,
 date date,
-primary key(idTouite, idUser)
+primary key(idtouite, iduser)
 );
 
-create table Contient (
-idTouite int(10) not null,
-idTag int(10) not null,
-primary key(idTouite, idTag)
+create table contient (
+idtouite int(10) not null,
+idtag int(10) not null,
+primary key(idtouite, idtag)
 );
 
-create table Suivre (
-idUser int(10) not null,
-idUser2 int(10) not null,
-primary key(idUser, idUser2)
+create table suivre (
+iduser int(10) not null,
+iduser2 int(10) not null,
+primary key(iduser, iduser2)
 );
 
-create table Abonnement (
-idUser int(10) not null,
-idTag int(10) not null,
-primary key(idUser, idTag)
+create table abonnement (
+iduser int(10) not null,
+idtag int(10) not null,
+primary key(iduser, idtag)
 );
 
-create table Likes (
-idUser int(10) not null,
-idTouite int(10) not null,
-nbLike int(2),
-primary key(idUser, idTouite)
+create table likes (
+iduser int(10) not null,
+idtouite int(10) not null,
+nblike int(2),
+primary key(iduser, idtouite)
 );
 
-alter table touite add foreign key (idImage) references Image(idImage);
+alter table touite add foreign key (idimage) references image(idimage);
 
-alter table publier add foreign key (idTouite) references Touite(idTouite);
-alter table publier add foreign key (idUser) references Utilisateur(idUser);
+alter table publier add foreign key (idtouite) references touite(idtouite);
+alter table publier add foreign key (iduser) references utilisateur(iduser);
 
-alter table contient add foreign key (idTouite) references Touite(idTouite);
-alter table contient add foreign key (idTag) references Tag(idTag);
+alter table contient add foreign key (idtouite) references touite(idtouite);
+alter table contient add foreign key (idtag) references tag(idtag);
 
-alter table suivre add foreign key (idUser) references Utilisateur(idUser);
-alter table suivre add foreign key (idUser2) references Utilisateur(idUser);
+alter table suivre add foreign key (iduser) references utilisateur(iduser);
+alter table suivre add foreign key (iduser2) references utilisateur(iduser);
 
-alter table abonnement add foreign key (idUser) references Utilisateur(idUser);
-alter table abonnement add foreign key (idTag) references Tag(idTag);
+alter table abonnement add foreign key (iduser) references utilisateur(iduser);
+alter table abonnement add foreign key (idtag) references tag(idtag);
 
-alter table likes add foreign key(idTouite) references Touite(idTouite);
-alter table likes add foreign key(idUser) references Utilisateur(idUser);
+alter table likes add foreign key(idtouite) references touite(idtouite);
+alter table likes add foreign key(iduser) references utilisateur(iduser);
