@@ -13,6 +13,7 @@ use iutnc\deefy\image\Image;
 use iutnc\deefy\tag\Tag;
 session_start();
 ConnectionFactory::setConfig('./conf/connexion.ini');
+$_SESSION['user'] = ['id'=>-1, 'prenom'=>" ", 'nom'=>" "];
 /**
 $image = new Image("rectangle", "/img/rectangle.png");
 $tag = new Tag("tag 1", "tag 1");
