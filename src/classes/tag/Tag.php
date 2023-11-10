@@ -4,6 +4,7 @@ namespace iutnc\deefy\tag;
 
 use iutnc\deefy\exception\InvalidPropertyNameException;
 use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\list\ListTag;
 
 class Tag {
     private string $libelle;
@@ -46,26 +47,15 @@ class Tag {
 
         $contenu = $_POST['contenu'];
         // trouver les # dans le touite et les ajouter dans la liste tags
-        $lettre = "";
-        $tag = "";
-        $tags = array();
-        for ($i = strlen($contenu); $i > -1 ; $i--) {
-            if (isset($contenu[$i])) $lettre = $contenu[$i];
-            $tag .= $lettre;
-            if ($lettre === "#") {
-                array_push($tags, strrev($tag));
-            }
-            if ($lettre === " ") {
-                $tag = "";
-            }
-        }
-
+        $tags = ListTag::recupererTagsDansTouite($contenu);
+        
         // insertion dans la table tag et contient
         foreach ($tags as $key => $value) {
             // vérifie si le tag n'existe pas déjà
-            $query = "select idTag from tag where libelle = ?";
+            $query = "select idTag from tag where libelle like  ?";
             $st = $pdo->prepare($query);
             $idTag = $st->execute([$value]);
+            
 
             // si il existe pas alors il le créé
             if ($st->rowCount() < 1) {
@@ -79,7 +69,7 @@ class Tag {
                 // insertion tag
                 $query = "insert into tag(idTag,libelle,description) values(?,?,?)";
                 $st = $pdo->prepare($query);
-                $st->execute([$idTag,$value,"description du tag"]);
+                $st->execute([$idTag,substr($value, 1),"description du tag"]);
             }
 
             // insertion dans la table contient

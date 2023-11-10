@@ -12,8 +12,8 @@ class RendererTouite {
         $this->touite = $t;
     }   
 
-    public function render(int $selector = 1): string {
-        if ($selector == 1) {
+    public function render(int $selector): string {
+        if ($selector === 1) {
             return $this->compact();
         } else {
             return $this->long();
@@ -35,9 +35,6 @@ class RendererTouite {
                 <p>". $this->touite->__get("texte") ."</p>
             </div>
         </div>
-        <img
-            src='../images/what.avif'
-            alt=''/>
         </div>";
     }
 
@@ -46,7 +43,7 @@ class RendererTouite {
         $t = "";
         foreach ($this->touite->getTags() as $tag) {
             $t = $t . $tag->__get("libelle");
-        }
+        }    
         return "<div class='post__body'>
         <div class='post__header'>
             <div class='post__headerText'>
@@ -58,6 +55,10 @@ class RendererTouite {
             </div>
             <div class='post__headerDescription'>
                 <p>". $this->touite->__get("texte") ."</p>
+            </div>
+            <div>
+                <button type='button'>Suivre</button>
+                <button type='button'>Suivre Tags</button>
             </div>
         </div>
         <img

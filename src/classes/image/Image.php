@@ -56,7 +56,7 @@ class Image
             $st = $pdo->prepare($query);
             $st->execute([$idImage,'./img/' . $name, 'image']);
         }
-
+        echo $name;
         return $idImage;
     }
  }

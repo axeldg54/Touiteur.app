@@ -67,10 +67,19 @@ class Touite
         $st->execute();
 
         $row = $st->fetchAll();            
+
+        // Si pas d'image en mettre une par défault
+        
+        $chemin = "./img/what.png";
+        if($row[$nb]["imgd"] === "image"){
+            $chemin = $row[$nb]["chemin"];
+        }
+        
+
         // Récupéré tous les tags associé dans une liste
         $tabTags = Tag::recupererTags($row[$nb]["idTouite"]);
         $t = new Touite($row[$nb]["texte"], $row[$nb]["nom"],
-            new Image($row[$nb]["imgd"], "img/what.png"),
+            new Image($row[$nb]["imgd"], $chemin),
             $row[$nb]["nblike"], new DateTime($row[$nb]["date"]), $tabTags);                          
         return $t; 
         

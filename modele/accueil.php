@@ -9,8 +9,6 @@ $selectTouite = Dispatcher::$selectTouite;
 $selectAuteur = Dispatcher::$selectAuteur;
 $selectTag = Dispatcher::$selectTag;
 
-// METTRE FICHIER CSS A PART DU CODE
-
 echo <<< FIN
 <!DOCTYPE html>
 <html lang="fr">

@@ -4,11 +4,7 @@ namespace iutnc\deefy\action;
 
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\dispatch\Dispatcher;
-use iutnc\deefy\image\Image;
-use iutnc\deefy\initialisation\Initialisation;
-use iutnc\deefy\list\ListTouite;
-use iutnc\deefy\tag\Tag;
-use iutnc\deefy\touite\Touite;
+
 
 class AbonnementAction extends Action {
 

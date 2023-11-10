@@ -3,7 +3,6 @@
 namespace iutnc\deefy\dispatch;
 
 use iutnc\deefy\action\AbonnementAction;
-use iutnc\deefy\action\ActionSelectTouite;
 use iutnc\deefy\action\AddTagAction;
 use iutnc\deefy\action\AddTouiteAction;
 use iutnc\deefy\action\DeconnexionAction;
@@ -11,9 +10,9 @@ use iutnc\deefy\action\DesabonnementAction;
 use iutnc\deefy\action\SignInAction;
 use iutnc\deefy\action\AddUserAction;
 use iutnc\deefy\action\SupTagAction;
-use iutnc\deefy\action\ActionSelectAuteur;
-use iutnc\deefy\action\ActionSelectTag;
+use iutnc\deefy\action\ActionSelect;
 use iutnc\deefy\initialisation\Initialisation;
+
 
 
 class Dispatcher {
@@ -27,36 +26,39 @@ class Dispatcher {
     public static string $accept = "";
     public static string $selectTag="";
 
+
     
     public function __construct() {
         if (isset($_GET['action'])) $this->action = $_GET['action'];
         else $this->action = '';
         if (isset($_GET["value"])) $this->value = $_GET["value"];
         else $this->value = '';
+        
     }
 
 
     public function run() {
+        // Initialisation des listes select
         Dispatcher::$selectTouite = Initialisation::initialiserSelectTouite();
         Dispatcher::$selectAuteur = Initialisation::initialiserSelectAuteur();  
         Dispatcher::$selectTag = Initialisation::initialiserSelectTag();
         switch ($this->action) {
             case "sign-in" :
-                Dispatcher::$html = (new SignInAction)->execute();                
+                Dispatcher::$html = (new SignInAction)->execute();               
                 break;
             case "register" :
-                Dispatcher::$html = (new AddUserAction)->execute();
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
+                Dispatcher::$html = (new AddUserAction)->execute();             
                 break;
             case "add-touite" :
                 Dispatcher::$html = (new AddTouiteAction())->execute();
                 break;
             case "liste-touite":
-                Dispatcher::$tweets = (new ActionSelectTouite($this->value))->execute();
+                Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;   
             case "liste-auteur":
-                Dispatcher::$tweets = (new ActionSelectAuteur($this->value))->execute();
+                Dispatcher::$tweets = (new ActionSelect($this->value, " where u.idUser=? "  ))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
             case "user-sub":
@@ -75,10 +77,11 @@ class Dispatcher {
                 Dispatcher::$html = (new SupTagAction())->execute();
                 break;
             case "liste-tag":
-                Dispatcher::$tweets = (new ActionSelectTag($this->value))->execute();
+                Dispatcher::$tweets = (new ActionSelect($this->value, " where tag.idtag=? "))->execute();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
             case "deconnexion":
+                Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = (new DeconnexionAction())->execute();
                 break;    
             default :
@@ -86,6 +89,7 @@ class Dispatcher {
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;
         };
+        
         $this->renderPage();
     }
 
