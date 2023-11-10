@@ -33,11 +33,14 @@ class Tag {
         $i = 0;
         
         while($row = $st->fetchAll()){
-            if(count($row) !== 0){
-                array_push($tab, new Tag($row[$i]["description"], $row[$i]["libelle"]));
-                $i++;
-            }
+                while($i < count($row)){
+                    array_push($tab, new Tag($row[$i]["description"], $row[$i]["libelle"]));            
+                    $i++;
+                }
         }
+        echo "<br>";
+        //echo "<pre>";
+        //var_dump($tab);
         return $tab;
     }
 

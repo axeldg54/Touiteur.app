@@ -41,8 +41,9 @@ class RendererTouite {
 
     private function long(): string {
         $t = "";
+        
         foreach ($this->touite->getTags() as $tag) {
-            $t = $t . $tag->__get("libelle");
+            $t =  $tag->__get("libelle") . " , " .  $t;
         }    
         return "<div class='post__body'>
         <div class='post__header'>

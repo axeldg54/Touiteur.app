@@ -17,7 +17,7 @@ class Touite
     private Image $image;
     private array $tags;
 
-        public static string $query = " select t.idTouite as idTouite, 
+        public static string $query = " select distinct t.idTouite as idTouite, 
         texte, nom, i.description as imgd, chemin,
         nblike, date from touite t inner join image i 
         on t.idImage = i.idImage inner join publier p 
@@ -65,7 +65,6 @@ class Touite
         
         $st = $db->prepare(self::$query . " order by t.idTouite desc");
         $st->execute();
-
         $row = $st->fetchAll();            
 
         // Si pas d'image en mettre une par défault
