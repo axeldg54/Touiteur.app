@@ -71,7 +71,7 @@ class RendererTouite {
             </div>
             <p class='touite-date'>". $this->touite->__get("date")->format("F j, Y, g:i a") ."</p>
         </div>
-      <form id='form' method='POST' action='index.php?action=sub-accueil&idTouite='{$this->touite->__get('id')} class='follow'>
+      <form id='form' method='POST' action='index.php?action=sub-accueil&idTouite={$this->touite->__get('id')}' class='follow'>
         <input type='submit' value='Suivre' class='follow-btn'>
         <input type='submit' value='Suivre Tags' class='follow-tags-btn'>
        </form>
