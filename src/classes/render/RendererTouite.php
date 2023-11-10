@@ -37,9 +37,6 @@ class RendererTouite {
                 <p>". $this->touite->__get("texte") ."</p>
             </div>
         </div>
-        <img
-            src='../images/what.avif'
-            alt=''/>
         </div>";
     }
 

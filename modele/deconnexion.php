@@ -12,7 +12,7 @@
 <div class="container">
     <h1>Touiteur.app</h1>
     <div class="confirmation-box">
-        <form id="form" method="POST" action="index.php?action=accueil" class="login-container">
+        <form id="form" method="POST" action="index.php?action=deconnexion" class="login-container">
             <h2>Voulez-vous vraiment vous déconnecter ?</h2>
             <input type="submit" value="Oui" class="login-button">
         </form>
