@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Déconnexion</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Touiteur.app</h1>
-
-<div class="login-box">
-    <form id="form" method="POST" action="index.php?action=deconnexion" class="login-container">
+<div class="container">
+    <h1>Touiteur.app</h1>
+    <div class="confirmation-box">
         <h2>Voulez-vous vraiment vous déconnecter ?</h2>
-        <input type="submit" value="Oui" class="login-button">
-    </form>
+        <input type="submit" value="Oui" class="confirmation-button">
+    </div>
 </div>
 
 </body>
@@ -22,8 +22,8 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #8458B3 0%, #E98181 100%);
+        font-family: 'Open Sans', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -31,52 +31,41 @@
         margin: 0;
     }
 
+    .container {
+        text-align: center;
+        width: 100%;
+    }
+
     h1 {
-        position: absolute;
-        top: 5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         color: whitesmoke;
-        font-size: 60px;
+        font-size: 4rem;
+        margin-bottom: 2rem;
     }
 
-    .login-box {
-        position: relative;
-        top: -50px;
-        margin: auto;
-    }
-
-    .login-container {
+    .confirmation-box {
         background: white;
         padding: 2rem;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 400px;
-        text-align: center;
+        margin: auto;
     }
 
-    .login-container h2 {
-        margin-bottom: 1rem;
+    .confirmation-box h2 {
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 2rem;
     }
 
-
-    .login-button {
+    .confirmation-button {
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         border: none;
         border-radius: 4px;
-        background: black;
+        background: #6D55A3;
         color: white;
         cursor: pointer;
+        font-weight: 600;
     }
 
-    .footer {
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    .footer a {
-        text-decoration: none;
-        color: #000;
-    }
 </style>

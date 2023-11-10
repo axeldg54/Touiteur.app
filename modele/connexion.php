@@ -11,6 +11,7 @@ echo <<<FIN
 </head>
 <body>
 
+
 <h1>Touiteur.app</h1>
 
 <div class="login-box">
@@ -18,18 +19,20 @@ echo <<<FIN
         <h2>Connectez-vous</h2>
         <div class="input-group">
             <label for="email">Email :</label>
-            <input type="email" id="email" name="email" value="user1@mail.com" required>
+            <input type="email" id="email" name="email" required>
         </div>
         <div class="input-group">
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" value="User1User1*" required>
+            <input type="password" id="password" name="password" required>
             <small><a href="#">Mot de passe oublié ?</a></small>
         </div>
         <input type="submit" value="Connexion" class="login-button">
         <div class="footer">
             <small>Vous n'êtes pas membre ? <a href="?action=register">Inscrivez-vous maintenant</a></small>
         </div>
-        <p class="msgRefus">$refus</p>
+        <?php if (!empty($refus)): ?>
+            <p class="msgRefus"><?= htmlspecialchars($refus) ?></p>
+        <?php endif; ?>
     </form>
 </div>
 
@@ -37,81 +40,98 @@ echo <<<FIN
 </html>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #8458B3 0%, #E98181 100%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    h1 {
-        position: absolute;
-        top: 5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: whitesmoke;
-        font-size: 60px;
-    }
 
-    .login-box {
-        position: relative;
-        margin: auto;
-    }
+.login-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
 
-    .login-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 400px;
-        text-align: center;
-    }
 
-    .login-container h2 {
-        margin-bottom: 1rem;
-    }
+.login-container {
+    display: flex;
+    flex-direction: column;
+}
 
-    .input-group {
-        margin-bottom: 1rem;
-    }
+.input-group {
+    margin-bottom: 1rem;
+}
 
-    .input-group label {
-        display: block;
-    }
+.input-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+.input-group input {
+    width: 100%;
+    padding: .75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
-    .input-group input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+.login-button {
+    padding: .75rem;
+    border: none;
+    border-radius: 4px;
+    background: #5D3FD3;
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem; 
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
 
-    .login-button {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        background: black;
-        color: white;
-        cursor: pointer;
-    }
+.login-button:hover {
+    background-color: #4a31c3;
+}
 
-    .footer {
-        text-align: center;
-        margin-top: 1rem;
-    }
+.footer {
+    margin-top: 1.5rem;
+}
 
-    .footer a {
-        text-decoration: none;
-        color: #000;
-    }
-    
-    .msgRefus {
-        color: red;
-    }
+.footer a {
+    text-decoration: none;
+    color: #5D3FD3;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.msgRefus {
+    color: red;
+    margin-top: .75rem;
+}
+
 </style>
 FIN;

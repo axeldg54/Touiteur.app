@@ -25,19 +25,22 @@ class Tag {
     }
 
     public static function recupererTags(int $idTouite) : array{
-        $db = ConnectionFactory::makeConnection(); 
+        $db = ConnectionFactory::makeConnection();
         $query = "select * from contient c inner join tag t on c.idtag = t.idtag where idTouite like ?";
         $st = $db->prepare($query);
         $st->execute([$idTouite]);
         $tab = array();
         $i = 0;
-        
+
         while($row = $st->fetchAll()){
-            if(count($row) !== 0){
+            while($i < count($row)){
                 array_push($tab, new Tag($row[$i]["description"], $row[$i]["libelle"]));
                 $i++;
             }
         }
+        echo "<br>";
+        //echo "<pre>";
+        //var_dump($tab);
         return $tab;
     }
 
@@ -48,14 +51,14 @@ class Tag {
         $contenu = $_POST['contenu'];
         // trouver les # dans le touite et les ajouter dans la liste tags
         $tags = ListTag::recupererTagsDansTouite($contenu);
-        
+
         // insertion dans la table tag et contient
         foreach ($tags as $key => $value) {
             // vérifie si le tag n'existe pas déjà
             $query = "select idTag from tag where libelle like  ?";
             $st = $pdo->prepare($query);
             $idTag = $st->execute([$value]);
-            
+
 
             // si il existe pas alors il le créé
             if ($st->rowCount() < 1) {
