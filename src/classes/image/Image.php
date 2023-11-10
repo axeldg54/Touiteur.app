@@ -16,13 +16,16 @@ class Image
     private string $description;
     private string $chemin;
 
+
     /**
      * Initialise le chemin et la description de l'image
      */
     public function __construct(string $d, string $c){
+
         $this->description = $d;
         $this->chemin = $c;
     }
+
 
 
     /**
@@ -30,12 +33,13 @@ class Image
      */
     public function __get(string $attr) : mixed{
         if(!property_exists($this, $attr)){
+
             throw new InvalidPropertyNameException("Attribut $attr n'existe pas");
-        }
-        else{
+        } else {
             return $this->$attr;
         }
     }
+
 
 
     /**
@@ -43,6 +47,9 @@ class Image
      * @return int l'id de l'image
      */
     public static function insertImage() : int {
+
+    
+
         // connexion bd
         $pdo = ConnectionFactory::makeConnection();
 
@@ -52,28 +59,24 @@ class Image
             $name = $_FILES['file']['name'];
         }
 
-        // ajout de l'image dans le dossier img
-        move_uploaded_file($tmpName, './img/' . $name);
-
-        // regarde si l'image n'existe pas déjà
-        $query = "select idImage from Image where chemin = ?";
+        // incrementation de l'id de l'image
+        $query = "select max(idImage) as max from Image";
         $st = $pdo->prepare($query);
-        $idImage = $st->execute(['./img/' . $name]);
+        $st->execute();
+        $row = $st->fetch();
+        $idImage = $row['max'] + 1;
 
-        // si elle n'existe pas encore
-        if ($st->rowCount() < 1) {
-            // incrementation de l'id de l'image
-            $query = "select max(idImage) as max from Image";
-            $st = $pdo->prepare($query);
-            $st->execute();
-            $row = $st->fetch();
-            $idImage = $row['max'] + 1;
+        $name = './img/'.$idImage.$name;
+        // htmlspecialchars($name) régler problème des apostrophes dans url image
 
-            // insertion de l'image
-            $query = "insert into image(idImage,chemin,description) values(?,?,?)";
-            $st = $pdo->prepare($query);
-            $st->execute([$idImage,'./img/' . $name, 'image']);
-        }
+        // ajout de l'image dans le dossier img
+        move_uploaded_file($tmpName, $name);
+
+        // insertion de l'image
+        $query = "insert into image(idImage,chemin,description) values(?,?,?)";
+        $st = $pdo->prepare($query);
+        $st->execute([$idImage, $name, 'image']);
+
         return $idImage;
     }
- }
+}
