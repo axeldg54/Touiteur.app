@@ -71,10 +71,11 @@ class RendererTouite {
             </div>
             <p class='touite-date'>". $this->touite->__get("date")->format("F j, Y, g:i a") ."</p>
         </div>
-        <div class='follow'>
-            <button type='button'>Suivre</button>
-            <button type='button'>Suivre Tags</button>
-        </div>
+      <div class='follow'>
+        <input type='button' value='Suivre' class='follow-btn'>
+        <input type='button' value='Suivre Tags' class='follow-tags-btn'>
+       </div>
+
     </div>
 <style>
       .touite-interaction {
@@ -85,7 +86,7 @@ class RendererTouite {
     border-bottom: 1px solid #e1e8ed;
 }
 
-.touite-likes-tags {
+.touite-likes-tags {qs
     display: flex-start;
     justify-content: space-between;
     align-items: center;
@@ -118,26 +119,25 @@ class RendererTouite {
     background: #f4f4f4;
     border-top: 1px solid #e1e8ed;
 }
+.follow input[type='button'] {
+      padding: 8px 16px; 
+      margin: 0 5px;
+      background-color: #483D8B;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, box-shadow 0.3s;
+  }
 
-.follow button {
-    padding: 8px 16px; 
-    margin: 0 5px;
-    background-color: #483D8B;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: background-color 0.3s, box-shadow 0.3s;
-
-.follow button:hover {
-    background-color: #D8BFD8;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
+  .follow input[type='button']:hover {
+      background-color: #D8BFD8;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
 
 .touite-interaction .follow {
     text-align: right;
@@ -146,7 +146,7 @@ class RendererTouite {
     border-top: none;
 }
 
-.touite-interaction .follow button {
+.touite-interaction .follow input {
     margin: 0;
     display: inline-block;
 }
