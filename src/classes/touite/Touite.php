@@ -16,6 +16,7 @@ class Touite
     private DateTime $date;
     private Image $image;
     private array $tags;
+    private int $id;
 
         public static string $query = " select distinct t.idTouite as idTouite, 
         texte, nom, i.description as imgd, chemin,
@@ -32,13 +33,14 @@ class Touite
     @param $auteur auteur du touite
     @param $titre titre du touite
      */
-    public function __construct(string $texte, string $auteur, Image $i, int $score, DateTime $date, array $tags){
+    public function __construct(int $idTouite, string $texte, string $auteur, Image $i, int $score, DateTime $date, array $tags){
         $this->texte = $texte;
         $this->score = $score;
         $this->auteur = $auteur;
         $this->date = $date;
         $this->image = $i;
         $this->tags = $tags;
+        $this->id = $idTouite;
     }
 
 
@@ -77,7 +79,7 @@ class Touite
 
         // Récupéré tous les tags associé dans une liste
         $tabTags = Tag::recupererTags($row[$nb]["idTouite"]);
-        $t = new Touite($row[$nb]["texte"], $row[$nb]["nom"],
+        $t = new Touite($row[$nb]["idTouite"], $row[$nb]["texte"], $row[$nb]["nom"],
             new Image($row[$nb]["imgd"], $chemin),
             $row[$nb]["nblike"], new DateTime($row[$nb]["date"]), $tabTags);                          
         return $t; 

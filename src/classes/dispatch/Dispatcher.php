@@ -26,6 +26,7 @@ class Dispatcher {
     public static string $refus = "";
     public static string $accept = "";
     public static string $selectTag="";
+    private string $idTouite = "";
 
 
     
@@ -34,6 +35,8 @@ class Dispatcher {
         else $this->action = '';
         if (isset($_GET["value"])) $this->value = $_GET["value"];
         else $this->value = '';
+        if (isset($_GET["idTouite"])) $this->idTouite = $_GET["idTouite"];
+        else $this->idTouite = "";
         
     }
 
@@ -65,8 +68,8 @@ class Dispatcher {
             case "user-sub":
                 Dispatcher::$html = (new AbonnementAction())->execute();
                 break;
-            case "subAccueil":
-                Dispatcher::$html= (new AbonnementAccueilAction())->execute();
+            case "sub-accueil":
+                Dispatcher::$html= (new AbonnementAccueilAction($this->idTouite))->execute();
             case "user-unsub":
                 Dispatcher::$html = (new DesabonnementAction())->execute();
                 break;
@@ -87,7 +90,7 @@ class Dispatcher {
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = (new DeconnexionAction())->execute();
                 break;
-            case "acceuil":
+            case "accueil":
                 Dispatcher::$tweets = Initialisation::initialiser_Touites();
                 Dispatcher::$html = include 'modele/accueil.php';
                 break;

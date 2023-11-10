@@ -71,10 +71,10 @@ class RendererTouite {
             </div>
             <p class='touite-date'>". $this->touite->__get("date")->format("F j, Y, g:i a") ."</p>
         </div>
-      <div class='follow'>
-        <input type='button' value='Suivre' class='follow-btn'>
-        <input type='button' value='Suivre Tags' class='follow-tags-btn'>
-       </div>
+      <form id='form' method='POST' action='index.php?action=sub-accueil&idTouite='{$this->touite->__get('id')} class='follow'>
+        <input type='submit' value='Suivre' class='follow-btn'>
+        <input type='submit' value='Suivre Tags' class='follow-tags-btn'>
+       </form>
 
     </div>
 <style>
@@ -86,7 +86,7 @@ class RendererTouite {
     border-bottom: 1px solid #e1e8ed;
 }
 
-.touite-likes-tags {qs
+.touite-likes-tags {
     display: flex-start;
     justify-content: space-between;
     align-items: center;
@@ -119,7 +119,7 @@ class RendererTouite {
     background: #f4f4f4;
     border-top: 1px solid #e1e8ed;
 }
-.follow input[type='button'] {
+.follow input[type='submit'] {
       padding: 8px 16px; 
       margin: 0 5px;
       background-color: #483D8B;
@@ -134,7 +134,7 @@ class RendererTouite {
       transition: background-color 0.3s, box-shadow 0.3s;
   }
 
-  .follow input[type='button']:hover {
+  .follow input[type='submit']:hover {
       background-color: #D8BFD8;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   }

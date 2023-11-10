@@ -7,6 +7,12 @@ use iutnc\deefy\dispatch\Dispatcher;
 use iutnc\deefy\touite\Touite;
 
 class AbonnementAccueilAction extends Action{
+    private string $idTouite;
+
+    public function __construct($id)
+    {
+        $this->idTouite = $id;
+    }
 
     public function execute(): string
     {
@@ -16,13 +22,11 @@ class AbonnementAccueilAction extends Action{
             // connexion bd
             $pdo = ConnectionFactory::makeConnection();
 
-            //recuperation de l'idUser de l'auteur du tweet
-
-            $nom = Touite::__get("auteur");
-            $query = "select idUser from utilisateur where nom = ";
+            // recuperation de l'idUser de l'auteur du tweet
+            $query = "select idUser from publier where idTouite = ?";
             $st = $pdo->prepare($query);
-            $id = $st->execute([$nom]);
-
+            $id = $st->execute([$this->idTouite]);
+            echo $id;
 
             $query = "select idUser from suivre where idUser = ? and idUser2 = ?";
             $st = $pdo->prepare($query);
