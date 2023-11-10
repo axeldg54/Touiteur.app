@@ -41,13 +41,14 @@ echo <<< FIN
 
         <div class="container">
             <h1>Suivre un utilisateur</h1>
-            <form id="form" method="POST" action="index.php?action=user-sub">
-                <p>Entrez l'email de la personne que vous voulez suivre</p><br><br><br>
-                <input type="email" id="email" name="email" value="john.doe@example.com" class="form-input" required>
-                <input type="submit" value="Suivre" class="userButton">
-            </form>
+            <div class="content">
+                <p>Entrez l'email de la personne que vous voulez suivre</p>
+                <form id="form-follow" method="POST" action="index.php?action=user-sub" class="form-container">
+                    <input type="email" id="email" name="email" value="john.doe@example.com" class="form-input" required>
+                    <input type="submit" value="Suivre" class="userButton">
+                </form>
+            </div>
         </div>
-
 
         <div class="container">
             <h1>Se desabonner</h1>
@@ -118,18 +119,21 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  padding: 20px;
-}
+  align-items: stretch; 
+  }
+
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push the content to the top and bottom of the container */
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
   padding: 20px;
-  flex: 0 1 300px;
-  padding: 15px;
-
+  margin-bottom: 20px;
+  flex: 1; /* This will make the containers flexible in terms of width */
+  min-height: 250px; /* Set a minimum height for all containers */
 }
 
 .user-info, .actions, .form-container {
